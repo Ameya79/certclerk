@@ -1,0 +1,44 @@
+# Python
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+dist/
+build/
+*.egg
+
+# Environment & Secrets (NEVER COMMIT)
+.env
+.env.local
+.env.*.local
+*.tmp
+
+# Data (runtime, temporary)
+data/
+
+# Node & Next.js
+node_modules/
+**/node_modules/
+.next/
+**/.next/
+out/
+.turbo/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Test
+.coverage
+htmlcov/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
