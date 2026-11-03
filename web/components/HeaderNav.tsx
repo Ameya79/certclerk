@@ -36,19 +36,13 @@ export default function HeaderNav() {
             href="/#demo"
             className="px-3 py-1.5 rounded-lg hover:bg-slate-100/80 hover:text-slate-950 transition-colors"
           >
-            Agent Demo
+            Motion Story
           </Link>
           <Link
-            href="/#workflow"
+            href="/studio"
             className="px-3 py-1.5 rounded-lg hover:bg-slate-100/80 hover:text-slate-950 transition-colors"
           >
-            Workflow
-          </Link>
-          <Link
-            href="/#guarantees"
-            className="px-3 py-1.5 rounded-lg hover:bg-slate-100/80 hover:text-slate-950 transition-colors"
-          >
-            Guarantees
+            Studio
           </Link>
         </div>
 
