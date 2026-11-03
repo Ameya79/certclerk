@@ -1,5 +1,5 @@
 """
-CertClerk — FastAPI Backend.
+galeus — FastAPI Backend.
 
 All API endpoints, with validation, rate limiting, security headers,
 and background job execution.
@@ -70,14 +70,14 @@ logging.basicConfig(
     level=logging.INFO,
     format="%(asctime)s %(levelname)s %(name)s %(message)s",
 )
-logger = logging.getLogger("certclerk")
+logger = logging.getLogger("galeus")
 
 # ---------------------------------------------------------------------------
 # App setup
 # ---------------------------------------------------------------------------
 
 app = FastAPI(
-    title="CertClerk",
+    title="galeus API",
     description="Turn Canva certificates + messy attendee lists into personalized, emailed certificates.",
     version="1.0.0",
 )
@@ -189,7 +189,7 @@ def _make_audit(job_id: str):
 @app.get("/healthz")
 async def health():
     """Liveness check — must stay fast even during heavy jobs."""
-    return {"ok": True, "service": "certclerk", "ts": datetime.now(timezone.utc).isoformat()}
+    return {"ok": True, "service": "galeus", "ts": datetime.now(timezone.utc).isoformat()}
 
 
 @app.post("/api/jobs")
@@ -881,7 +881,7 @@ async def download_zip(job_id: str):
     return Response(
         content=zip_bytes,
         media_type="application/zip",
-        headers={"Content-Disposition": f'attachment; filename="certclerk_{job_id[:8]}_certificates.zip"'},
+        headers={"Content-Disposition": f'attachment; filename="galeus_{job_id[:8]}_certificates.zip"'},
     )
 
 

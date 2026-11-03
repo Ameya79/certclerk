@@ -32,7 +32,7 @@ class TestApiIntegration:
         assert response.status_code == 200
         data = response.json()
         assert data["ok"] is True
-        assert data["service"] == "certclerk"
+        assert data["service"] == "galeus"
 
     def test_full_job_lifecycle(self, client, simple_template_pdf, sample_csv_bytes):
         """

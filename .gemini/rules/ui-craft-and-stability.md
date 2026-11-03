@@ -17,17 +17,16 @@
 - Mask secrets in all API responses and sanitize exception messages.
 
 ## 5. Local-First Organizer Invariant
-- **Zero Login Walls**: CertClerk is a local-first workstation tool running directly on the organizer's personal computer. Never introduce mandatory sign-up, sign-in, or cloud authentication barriers.
-- **Immediate Desktop Utility**: The home page must drop directly into the certificate studio and feature interactive local tools without gating features behind an account.
+- **Zero Login Walls**: galeus is a local-first workstation tool running directly on the organizer's personal computer. Never introduce mandatory sign-up, sign-in, or cloud authentication barriers.
+- **Immediate Desktop Utility**: The home page must feature the batch studio and interactive local tools with direct utility.
 - **Local Data Boundary**: All jobs, uploaded templates, and generated certificates reside exclusively on the local machine (`data/jobs/`).
 - **BYOK / Offline Parity**: Support offline heuristic rule execution by default, with optional runtime BYOK (Bring Your Own Key) for free AI providers stored locally in `.env`.
 
-## 6. Strict Anti-Vibe-Coding Standard (Zero Slop Policy)
+## 6. Strict Anti-Vibe-Coding Standard (Flat, Minimal & Juicy)
 Every interface must be engineered like precision desktop software (Linear, Raycast, Vercel), actively eliminating all 50 "vibe-coded" tropes:
-- **No Cookie-Cutter SaaS Landing Pages**: Do not generate multi-paragraph marketing copy, fake testimonials, or rows of cards containing icons in colored circles. Deliver high-density, tactile workstation tools with direct utility.
 - **Spacing & Alignment Invariants**: Symmetrical vertical/horizontal padding (`p-4 sm:p-6`), strict 8pt rhythm, zero grid orphans, zero wandering headers, zero negative margins, and `flex-shrink: 0` on all icons/badges.
-- **Zero Aceternity/Neon Slop**: Strictly flat white/slate theme (`#ffffff`, `#f8fafc`, `#f1f5f9`, border `#e2e8f0`). No dark purple-to-blue linear gradients, no glowing border rings, and no heavy stamp shadows.
-- **Natural Interaction Curves**: Micro-interactions only (tactile `active:scale-[0.99]`, subtle 1px border hover). No aggressive `scale-110` jumps, no linear robotic easing, no uncanny text-scrambling, no cursor orbs.
+- **Flat, Tactile Aesthetic**: Strictly crisp flat slate/white theme (`#ffffff`, `#fbfbfc`, border `#e2e8f0`). No dark purple-to-blue linear gradients, no glowing border rings, and no heavy stamp shadows.
+- **Natural Interaction Curves**: Micro-interactions only (tactile `active:scale-[0.98]`, subtle 1px border hover). No aggressive `scale-110` jumps, no linear robotic easing, no uncanny text-scrambling, no cursor orbs.
 - **Semantic & Accessible Code**: Semantic HTML5 tags (`<header>`, `<main>`, `<section>`, `<nav>`, `<footer>`), `focus-visible` keyboard rings, `aria-label` on all icon-only buttons, dynamic `new Date().getFullYear()`, and 100% clean browser console.
 
 ## 7. Vercel Geist Typography Mandate
@@ -38,3 +37,15 @@ Every interface must be engineered like precision desktop software (Linear, Rayc
   - `GeistSerif` for certificate typography previews and formal document headers.
 - Never fall back to generic system sans-serif or un-configured Inter.
 
+## 8. Build Concurrency & Cache Integrity
+- **Never Run `next build` While `next dev` Is Active**: Running production builds concurrently in the same directory mutates `.next/` chunk manifests and corrupts Webpack module resolution for the running dev server (`TypeError: __webpack_modules__[moduleId] is not a function`). Always terminate the dev server before building, or use isolated directories.
+- **Cache Recovery**: If Webpack module mismatch occurs, terminate the dev process, run `npm run clean` (`fs.rmSync('.next')`), and restart cleanly.
+
+## 9. Systematic Brand Consistency (galeus)
+- Maintain brand integrity across the application:
+  1. High-resolution shark fin logo (`/galeus-logo.png`) and emblem (`/galeus-icon.png`).
+  2. Root metadata (`<title>`, `<meta description>`, OpenGraph tags, favicons).
+  3. Header navigation brand marks and logos.
+  4. Landing page copy, feature cards, and footers.
+  5. Package manifest (`package.json`) and API metadata (`FastAPI(title="galeus API")`).
+  6. Documentation (`README.md`, `DEPLOYMENT.md`).

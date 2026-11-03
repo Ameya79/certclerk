@@ -15,7 +15,7 @@ services:
       - LLM_API_KEY=${LLM_API_KEY:-}
       - LLM_MODEL=${LLM_MODEL:-}
     volumes:
-      - certclerk_data:/data
+      - galeus_data:/data
     restart: unless-stopped
 
   web:
@@ -31,5 +31,5 @@ services:
     restart: unless-stopped
 
 volumes:
-  certclerk_data:
+  galeus_data:
 

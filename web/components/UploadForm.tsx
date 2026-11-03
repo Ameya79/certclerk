@@ -91,7 +91,7 @@ export default function UploadForm({ onSuccess }: UploadFormProps) {
             }}
             className={`relative rounded-xl border-2 border-dashed p-6 transition-all duration-150 flex flex-col items-center justify-center text-center ${
               isDraggingTemplate
-                ? "border-slate-900 bg-slate-100/80"
+                ? "border-blue-600 bg-blue-50/40"
                 : templateFile
                 ? "border-emerald-300 bg-emerald-50/30"
                 : "border-slate-200 bg-slate-50/50 hover:bg-slate-50 hover:border-slate-300"
@@ -116,7 +116,7 @@ export default function UploadForm({ onSuccess }: UploadFormProps) {
                 <button
                   type="button"
                   onClick={() => setTemplateFile(null)}
-                  className="p-1 rounded-md text-slate-400 hover:text-slate-600 hover:bg-slate-200/60 transition-colors"
+                  className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-200/60 transition-colors cursor-pointer"
                   title="Remove file"
                 >
                   <X className="w-4 h-4" />
@@ -124,8 +124,8 @@ export default function UploadForm({ onSuccess }: UploadFormProps) {
               </div>
             ) : (
               <label htmlFor="upload-template-file" className="cursor-pointer flex flex-col items-center w-full">
-                <div className="w-10 h-10 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-500 mb-2.5 shadow-2xs">
-                  <Upload className="w-5 h-5" />
+                <div className="w-10 h-10 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-500 mb-2.5 shadow-flat group-hover:scale-105 transition-transform">
+                  <Upload className="w-5 h-5 text-slate-600" />
                 </div>
                 <span className="text-xs font-semibold text-slate-900">
                   Click to browse or drop Canva PDF
@@ -173,7 +173,7 @@ export default function UploadForm({ onSuccess }: UploadFormProps) {
             }}
             className={`relative rounded-xl border-2 border-dashed p-6 transition-all duration-150 flex flex-col items-center justify-center text-center ${
               isDraggingData
-                ? "border-slate-900 bg-slate-100/80"
+                ? "border-blue-600 bg-blue-50/40"
                 : dataFile
                 ? "border-emerald-300 bg-emerald-50/30"
                 : "border-slate-200 bg-slate-50/50 hover:bg-slate-50 hover:border-slate-300"
@@ -198,7 +198,7 @@ export default function UploadForm({ onSuccess }: UploadFormProps) {
                 <button
                   type="button"
                   onClick={() => setDataFile(null)}
-                  className="p-1 rounded-md text-slate-400 hover:text-slate-600 hover:bg-slate-200/60 transition-colors"
+                  className="p-1.5 rounded-lg text-slate-400 hover:text-slate-600 hover:bg-slate-200/60 transition-colors cursor-pointer"
                   title="Remove file"
                 >
                   <X className="w-4 h-4" />
@@ -206,8 +206,8 @@ export default function UploadForm({ onSuccess }: UploadFormProps) {
               </div>
             ) : (
               <label htmlFor="upload-roster-file" className="cursor-pointer flex flex-col items-center w-full">
-                <div className="w-10 h-10 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-500 mb-2.5 shadow-2xs">
-                  <Upload className="w-5 h-5" />
+                <div className="w-10 h-10 rounded-lg bg-white border border-slate-200 flex items-center justify-center text-slate-500 mb-2.5 shadow-flat group-hover:scale-105 transition-transform">
+                  <Upload className="w-5 h-5 text-slate-600" />
                 </div>
                 <span className="text-xs font-semibold text-slate-900">
                   Click to browse or drop spreadsheet
@@ -229,9 +229,9 @@ export default function UploadForm({ onSuccess }: UploadFormProps) {
       </div>
 
       {/* Blueprint Parameters Box */}
-      <div className="bg-slate-50/80 border border-slate-200 rounded-xl p-5 space-y-3">
+      <div className="bg-slate-50/80 border border-slate-200/90 rounded-xl p-5 space-y-3">
         <div className="flex items-center gap-2">
-          <Type className="w-4 h-4 text-slate-700 shrink-0" />
+          <Type className="w-4 h-4 text-blue-600 shrink-0" />
           <h4 className="text-xs font-semibold text-slate-900">
             Layout Invariant Settings
           </h4>
@@ -248,7 +248,7 @@ export default function UploadForm({ onSuccess }: UploadFormProps) {
               value={placeholder}
               onChange={(e) => setPlaceholder(e.target.value)}
               placeholder="AGENT"
-              className="w-full px-3 py-2 rounded-lg border border-slate-200 bg-white font-mono text-xs text-slate-900 placeholder-slate-400 focus:border-slate-400 focus:ring-1 focus:ring-slate-900 transition-colors shadow-2xs"
+              className="w-full px-3 py-2 rounded-lg border border-slate-200 bg-white font-mono text-xs text-slate-900 placeholder-slate-400 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors shadow-flat"
             />
             <p className="font-mono text-[10px] text-slate-500 mt-1">
               Case-sensitive search token in Canva PDF. Default: <code>AGENT</code>.
@@ -280,11 +280,11 @@ export default function UploadForm({ onSuccess }: UploadFormProps) {
         </div>
       )}
 
-      {/* Primary Action Button */}
+      {/* Primary Action Button (Tactile & Juicy) */}
       <button
         type="submit"
         disabled={loading || !templateFile || !dataFile}
-        className="w-full py-3.5 px-6 rounded-xl bg-slate-900 hover:bg-slate-800 text-white font-medium text-sm flex items-center justify-center gap-2 transition-all duration-150 active:scale-[0.99] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer shadow-xs focus-visible:ring-2 focus-visible:ring-slate-900"
+        className="w-full py-3.5 px-6 rounded-xl bg-slate-950 hover:bg-blue-600 text-white font-medium text-sm flex items-center justify-center gap-2 transition-all duration-150 active:scale-[0.99] disabled:opacity-40 disabled:cursor-not-allowed cursor-pointer shadow-tactile hover:shadow-juicy focus-visible:ring-2 focus-visible:ring-blue-600"
       >
         {loading ? (
           <>

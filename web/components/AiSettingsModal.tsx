@@ -329,7 +329,7 @@ export default function AiSettingsModal({ isOpen, onClose, onStatusChange }: AiS
             </div>
             {activePreset === "gemini" && (
               <p className="text-[11px] text-slate-500 mt-1">
-                Google AI Studio keys work with all Gemini models automatically. CertClerk uses the fast free <code>gemini-3.6-flash</code> model.
+                Google AI Studio keys work with all Gemini models automatically. galeus uses the fast free <code>gemini-2.0-flash</code> model.
               </p>
             )}
           </div>

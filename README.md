@@ -1,17 +1,21 @@
-# CertClerk
-
-> Turn **one Canva certificate template + one messy attendee list** into **verified, personalized certificates**, then email them after human approval.
+<div align="center">
+  <img src="web/public/galeus-logo.png" alt="galeus logo" width="340" />
+  <br />
+  <h3>Local-First Certificate Automation & Invariant Guard</h3>
+  <p>Turn <strong>one Canva certificate template + one messy attendee list</strong> into <strong>verified, personalized certificates</strong>, then email them after human approval.</p>
+</div>
 
 ---
 
 ## Features
 
-- **Strict Name Invariant Guard**: The AI agent only fixes casing and spacing. Code-level guards verify letter identity (`norm(raw) == norm(clean)`), preventing name hallucinations or arbitrary modifications.
+- **Strict Name Invariant Guard**: The AI agent only fixes casing and spacing. Code-level guards verify letter identity (`norm(raw) == norm(clean)`), mathematically preventing name hallucinations or arbitrary modifications.
 - **Self-Correcting Fit Loop**: Long names automatically shrink down to 60% font size, split onto two lines at optimal word boundaries, or fall back safely without overflowing margins.
 - **Human Approval Gate**: Cryptographic SHA-256 fingerprinting guarantees that **zero emails** are sent without explicit human review. Any subsequent data modification automatically invalidates approval.
 - **Write-Ahead Logging (WAL)**: Per-row delivery logging (`sending` → `sent` / `failed`) guarantees zero duplicate sends even across sudden server crashes.
 - **Zero Database Requirement**: Ephemeral capability-URL job storage on the filesystem with atomic replacement and automatic 24-hour cleanup.
 - **In-Memory SMTP Security**: User credentials live in memory during dispatch only and are never written to disk, database, or server logs.
+- **Vercel Geist Typography**: Powered by the official Vercel Geist suite (`GeistSans`, `GeistMono`, `GeistPixel`, and `GeistSerif`).
 
 ---
 

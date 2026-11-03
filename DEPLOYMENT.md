@@ -1,6 +1,6 @@
-# CertClerk — Multi-User Production Deployment Guide
+# galeus — Multi-User Production Deployment Guide
 
-This guide describes how to take CertClerk from a single-instance organizer tool and scale it into a **multi-user SaaS platform** with distributed background workers, relational database persistence, S3 object storage, and real-time aggregate metrics.
+This guide describes how to take galeus from a single-instance organizer tool and scale it into a **multi-user SaaS platform** with distributed background workers, relational database persistence, S3 object storage, and real-time aggregate metrics.
 
 ---
 
@@ -47,7 +47,7 @@ flowchart TD
 
 ## 2. Multi-Tenant Database Schema (PostgreSQL)
 
-In single-instance mode, CertClerk stores jobs as atomic JSON files in `data/jobs/{id}`. For multi-tenant production, migrate to PostgreSQL:
+In single-instance mode, galeus stores jobs as atomic JSON files in `data/jobs/{id}`. For multi-tenant production, migrate to PostgreSQL:
 
 ```sql
 -- 1. Users and Organizations
@@ -139,7 +139,7 @@ For multiple concurrent users generating thousands of certificates simultaneousl
 
 ## 5. Live Aggregate Metrics Engine
 
-CertClerk includes a real-time aggregate metrics engine:
+galeus includes a real-time aggregate metrics engine:
 * **Endpoint**: `GET /api/metrics`
 * **Response Payload**:
   ```json
@@ -199,5 +199,6 @@ volumes:
    - **Backend**: Python environment, start command: `uvicorn api.main:app --host 0.0.0.0 --port 8000`.
    - **Frontend**: Node.js environment, start command: `npm run start` with `BACKEND_URL` pointing to the internal backend URL.
 3. Add environment variables (`LLM_BASE_URL`, `LLM_API_KEY`, `LLM_MODEL`).
-4. Done! CertClerk is live with SSL certificates and auto-scaling.
+4. Done! galeus is live with SSL certificates and auto-scaling.
+
 
