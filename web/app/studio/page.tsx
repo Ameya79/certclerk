@@ -4,7 +4,7 @@ import React from "react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import UploadForm from "../../components/UploadForm";
-import { ArrowLeft, Layers, ShieldCheck, HardDrive, Lock } from "lucide-react";
+import { ArrowLeft, Layers, ShieldCheck, HardDrive, Lock, FileSpreadsheet, FileText } from "lucide-react";
 
 export default function StudioPage() {
   const router = useRouter();
@@ -22,7 +22,7 @@ export default function StudioPage() {
           className="inline-flex items-center gap-1.5 text-xs font-medium text-slate-500 hover:text-slate-900 transition-colors group"
         >
           <ArrowLeft className="w-3.5 h-3.5 transition-transform group-hover:-translate-x-0.5" />
-          <span>Back to Documentation & Guide</span>
+          <span>Back to Documentation &amp; Overview</span>
         </Link>
 
         <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 pb-3 border-b border-slate-200/80">
@@ -42,7 +42,7 @@ export default function StudioPage() {
 
           <div className="flex items-center gap-2 shrink-0">
             <span className="font-pixel text-[10px] font-medium px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200/80">
-              STUDIO READY
+              DESKTOP MODE
             </span>
           </div>
         </div>
@@ -51,7 +51,7 @@ export default function StudioPage() {
       {/* Main Studio Ingest Station */}
       <section
         aria-label="Upload and Parameters Dock"
-        className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-flat"
+        className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-flat hover:shadow-tactile transition-shadow"
       >
         <UploadForm onSuccess={handleUploadSuccess} />
       </section>
@@ -61,9 +61,9 @@ export default function StudioPage() {
         aria-label="Active Engine Guardrails"
         className="grid grid-cols-1 sm:grid-cols-3 gap-3 text-xs"
       >
-        <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-flat space-y-1">
+        <div className="p-4 rounded-xl bg-white border border-slate-200/90 shadow-flat space-y-1">
           <div className="flex items-center gap-1.5 font-semibold text-slate-900">
-            <ShieldCheck className="w-3.5 h-3.5 text-emerald-600 shrink-0" />
+            <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
             <span>Character Invariant</span>
           </div>
           <p className="text-[11px] text-slate-500 leading-normal">
@@ -71,9 +71,9 @@ export default function StudioPage() {
           </p>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-flat space-y-1">
+        <div className="p-4 rounded-xl bg-white border border-slate-200/90 shadow-flat space-y-1">
           <div className="flex items-center gap-1.5 font-semibold text-slate-900">
-            <HardDrive className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+            <HardDrive className="w-4 h-4 text-blue-600 shrink-0" />
             <span>Ephemeral Local Storage</span>
           </div>
           <p className="text-[11px] text-slate-500 leading-normal">
@@ -81,9 +81,9 @@ export default function StudioPage() {
           </p>
         </div>
 
-        <div className="p-3.5 rounded-xl bg-white border border-slate-200/80 shadow-flat space-y-1">
+        <div className="p-4 rounded-xl bg-white border border-slate-200/90 shadow-flat space-y-1">
           <div className="flex items-center gap-1.5 font-semibold text-slate-900">
-            <Lock className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+            <Lock className="w-4 h-4 text-blue-600 shrink-0" />
             <span>SHA-256 Gate</span>
           </div>
           <p className="text-[11px] text-slate-500 leading-normal">

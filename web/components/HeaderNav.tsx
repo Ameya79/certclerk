@@ -33,20 +33,16 @@ export default function HeaderNav() {
         {/* Nav Links */}
         <div className="hidden md:flex items-center gap-1 mr-1 text-xs font-medium text-slate-600">
           <Link
-            href="/"
-            className={`px-3 py-1.5 rounded-lg transition-colors ${
-              !isStudioPage
-                ? "text-slate-950 font-semibold bg-slate-100/60"
-                : "hover:bg-slate-100/80 hover:text-slate-950"
-            }`}
-          >
-            Docs & Guide
-          </Link>
-          <Link
-            href="/#guide"
+            href="/#demo"
             className="px-3 py-1.5 rounded-lg hover:bg-slate-100/80 hover:text-slate-950 transition-colors"
           >
-            How to Use
+            Agent Demo
+          </Link>
+          <Link
+            href="/#workflow"
+            className="px-3 py-1.5 rounded-lg hover:bg-slate-100/80 hover:text-slate-950 transition-colors"
+          >
+            Workflow
           </Link>
           <Link
             href="/#guarantees"
@@ -97,7 +93,7 @@ export default function HeaderNav() {
             className="px-3.5 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 text-xs font-medium flex items-center gap-1.5 transition-all duration-150 active:scale-[0.98] shadow-flat shrink-0"
           >
             <BookOpen className="w-3.5 h-3.5 text-slate-600 shrink-0" />
-            <span>Read Docs</span>
+            <span>Overview</span>
           </Link>
         ) : (
           <Link
