@@ -65,6 +65,10 @@ Visit `http://localhost:3000` in your browser. API docs are available at `http:/
 docker compose up --build
 ```
 
+### 3. Cloud Deployment (Vercel + Railway)
+
+For step-by-step instructions on deploying the Next.js frontend to **Vercel** and the Python backend to **Railway / Render**, see the [Vercel Deployment Guide](DEPLOY_VERCEL.md). For enterprise multi-tenant architecture, see [DEPLOYMENT.md](DEPLOYMENT.md).
+
 ---
 
 ## Running Tests
