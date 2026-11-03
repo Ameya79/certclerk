@@ -78,3 +78,47 @@ html {
   animation: pulseGently 2.2s infinite ease-in-out;
 }
 
+/* Staggered text intro animations */
+@keyframes textIntro {
+  0% {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-intro-1 {
+  animation: textIntro 0.5s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+.animate-intro-2 {
+  animation: textIntro 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.08s both;
+}
+
+.animate-intro-3 {
+  animation: textIntro 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.16s both;
+}
+
+.animate-intro-4 {
+  animation: textIntro 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.24s both;
+}
+
+.animate-intro-5 {
+  animation: textIntro 0.5s cubic-bezier(0.16, 1, 0.3, 1) 0.32s both;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-intro-1,
+  .animate-intro-2,
+  .animate-intro-3,
+  .animate-intro-4,
+  .animate-intro-5,
+  .animate-fade-in-up {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}

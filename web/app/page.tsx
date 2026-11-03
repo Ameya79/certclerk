@@ -1,12 +1,8 @@
 "use client";
 
-import React, { useEffect, useState } from "react";
+import React from "react";
+import Link from "next/link";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
-import UploadForm from "../components/UploadForm";
-import InteractiveSandbox from "../components/InteractiveSandbox";
-import { getGlobalMetrics } from "../lib/api";
-import { GlobalMetrics } from "../lib/types";
 import {
   ShieldCheck,
   Scale,
@@ -21,29 +17,20 @@ import {
   Sliders,
   Mail,
   FileSpreadsheet,
-  Zap,
+  BookOpen,
+  FileText,
+  Sparkles,
+  HelpCircle,
+  ExternalLink,
 } from "lucide-react";
 
 export default function Home() {
-  const router = useRouter();
-  const [metrics, setMetrics] = useState<GlobalMetrics | null>(null);
-
-  useEffect(() => {
-    getGlobalMetrics()
-      .then((m) => setMetrics(m))
-      .catch(() => {});
-  }, []);
-
-  const handleUploadSuccess = (jobId: string) => {
-    router.push(`/jobs/${jobId}`);
-  };
-
   return (
-    <div className="space-y-16 sm:space-y-24">
-      {/* 1. HERO SECTION (FLAT, MINIMAL & JUICY) */}
-      <section aria-label="Introduction" className="text-center pt-2 sm:pt-8 space-y-6 max-w-4xl mx-auto">
-        {/* Subtle Announcement Pill with Geist Pixel badge */}
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-100/90 border border-slate-200/80 text-xs font-medium text-slate-800 shadow-flat">
+    <div className="space-y-20 sm:space-y-28">
+      {/* 1. HERO SECTION WITH ACCURATE STAGGERED INTRO ANIMATIONS */}
+      <section aria-label="Introduction" className="text-center pt-4 sm:pt-10 space-y-6 max-w-4xl mx-auto">
+        {/* Intro 1: Status Pill */}
+        <div className="animate-intro-1 inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-100/90 border border-slate-200/90 text-xs font-medium text-slate-800 shadow-flat">
           <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse shrink-0" />
           <span className="font-medium text-slate-900">galeus 1.0</span>
           <span className="text-slate-300">•</span>
@@ -52,38 +39,40 @@ export default function Home() {
           </span>
         </div>
 
-        {/* Primary Headline in Geist Sans */}
-        <h1 className="text-4xl sm:text-6xl font-bold tracking-tight text-slate-950 leading-[1.12]">
+        {/* Intro 2: Main Headline in Geist Sans */}
+        <h1 className="animate-intro-2 text-4xl sm:text-6xl font-bold tracking-tight text-slate-950 leading-[1.12]">
           One Canva template.<br />
           One messy sheet.<br />
           <span className="text-blue-600">Zero mistakes.</span>
         </h1>
 
-        {/* Hero Subhead */}
-        <p className="text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
-          <strong className="text-slate-950 font-semibold">galeus</strong> turns unformatted attendee spreadsheets and Canva certificate PDFs into verified, personalized certificates—with mathematical name invariants, auto-scaling typography, and human approval before sending.
+        {/* Intro 3: Explanatory Subhead */}
+        <p className="animate-intro-3 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
+          <strong className="text-slate-950 font-semibold">galeus</strong> is a local-first certificate workstation that turns unformatted attendee spreadsheets and Canva PDFs into verified, personalized certificates—with mathematical name invariants, auto-scaling typography, and human approval before sending.
         </p>
 
-        {/* Call to Actions (Tactile & Juicy) */}
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
-          <a
-            href="#studio"
-            className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-slate-950 hover:bg-blue-600 text-white font-medium text-sm flex items-center justify-center gap-2 transition-all duration-150 active:scale-[0.98] shadow-tactile hover:shadow-juicy cursor-pointer"
+        {/* Intro 4: Dual Action Buttons */}
+        <div className="animate-intro-4 flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+          <Link
+            href="/studio"
+            className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-slate-950 hover:bg-blue-600 text-white font-medium text-sm flex items-center justify-center gap-2 transition-all duration-150 active:scale-[0.98] shadow-tactile hover:shadow-juicy"
           >
-            <span>Launch Batch Studio</span>
+            <Layers className="w-4 h-4 shrink-0" />
+            <span>Open Studio Workstation</span>
             <ArrowRight className="w-4 h-4 shrink-0" />
-          </a>
+          </Link>
 
           <a
-            href="#playground"
-            className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-medium text-sm flex items-center justify-center gap-2 transition-all duration-150 active:scale-[0.98] shadow-flat cursor-pointer"
+            href="#guide"
+            className="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-white hover:bg-slate-50 text-slate-700 border border-slate-200 font-medium text-sm flex items-center justify-center gap-2 transition-all duration-150 active:scale-[0.98] shadow-flat"
           >
-            <span>Try Interactive Playground</span>
+            <BookOpen className="w-4 h-4 text-slate-500 shrink-0" />
+            <span>Read How-To Documentation</span>
           </a>
         </div>
 
-        {/* Trust Badges Bar */}
-        <div className="pt-6 border-t border-slate-200/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-medium text-slate-600">
+        {/* Intro 5: Trust Strip */}
+        <div className="animate-intro-5 pt-8 border-t border-slate-200/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-medium text-slate-600">
           <div className="flex items-center justify-center gap-1.5">
             <HardDrive className="w-4 h-4 text-blue-600 shrink-0" />
             <span>100% On-Device</span>
@@ -103,33 +92,235 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. INTERACTIVE PLAYGROUND SHOWCASE */}
-      <section id="playground" aria-label="Interactive Invariant Playground" className="space-y-4">
-        <div className="text-center max-w-xl mx-auto space-y-2">
-          <h2 className="text-2xl font-bold tracking-tight text-slate-950">
-            See the Invariant Guard in action
+      {/* 2. COMPREHENSIVE HOW-TO-USE DOCUMENTATION */}
+      <section id="guide" aria-label="Documentation and How-To Guide" className="space-y-12">
+        <div className="text-center max-w-2xl mx-auto space-y-3">
+          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-medium border border-blue-200/60">
+            <BookOpen className="w-3.5 h-3.5" />
+            <span>Comprehensive Documentation</span>
+          </div>
+          <h2 className="text-3xl font-bold tracking-tight text-slate-950">
+            How to Use galeus
           </h2>
-          <p className="text-xs sm:text-sm text-slate-600 leading-normal">
-            Test any irregular attendee string. galeus repairs casing, particles, and honorifics while strictly guaranteeing letter identity.
+          <p className="text-sm text-slate-600 leading-relaxed">
+            Follow this guide to prepare your Canva template, format attendee sheets, review invariants, and safely dispatch bulk certificates.
           </p>
         </div>
 
-        <InteractiveSandbox />
+        {/* Step-by-Step Documentation Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Guide Step 1: Canva Blueprint */}
+          <article className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 space-y-4 shadow-flat hover:shadow-tactile transition-all">
+            <div className="flex items-center justify-between">
+              <span className="font-pixel text-[11px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded border border-blue-200/60">
+                STEP 01
+              </span>
+              <FileText className="w-4 h-4 text-slate-400" />
+            </div>
+
+            <h3 className="text-base font-semibold text-slate-950 tracking-tight">
+              Preparing Your Canva PDF Template
+            </h3>
+
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Design your certificate layout normally in Canva. In the text box where the recipient name should appear, type your placeholder word (default: <code className="font-mono text-slate-800 bg-slate-100 px-1 py-0.5 rounded text-xs">AGENT</code>).
+            </p>
+
+            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2 text-xs text-slate-600">
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span><strong>Export as PDF Standard</strong> (single page, &le; 5MB).</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span>Keep the placeholder text centered so auto-fit balances names properly.</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span>(Optional) Upload your matching font (<code className="font-mono text-[11px]">.ttf</code> or <code className="font-mono text-[11px]">.otf</code>) in the studio.</span>
+              </div>
+            </div>
+          </article>
+
+          {/* Guide Step 2: Attendee Spreadsheet */}
+          <article className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 space-y-4 shadow-flat hover:shadow-tactile transition-all">
+            <div className="flex items-center justify-between">
+              <span className="font-pixel text-[11px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded border border-blue-200/60">
+                STEP 02
+              </span>
+              <FileSpreadsheet className="w-4 h-4 text-slate-400" />
+            </div>
+
+            <h3 className="text-base font-semibold text-slate-950 tracking-tight">
+              Formatting the Attendee Spreadsheet
+            </h3>
+
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              galeus ingests raw <code className="font-mono text-slate-800 bg-slate-100 px-1 py-0.5 rounded text-xs">.csv</code> and <code className="font-mono text-slate-800 bg-slate-100 px-1 py-0.5 rounded text-xs">.xlsx</code> spreadsheets. Column names like <code className="font-mono text-xs">name</code>, <code className="font-mono text-xs">full_name</code>, <code className="font-mono text-xs">email</code>, and <code className="font-mono text-xs">e-mail</code> are automatically detected.
+            </p>
+
+            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2 text-xs text-slate-600">
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span><strong>No manual cleanup needed</strong>: Irregular casing (<code className="font-mono text-[11px]">mrs. sARAh o'connor</code>) is auto-fixed.</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span>Duplicate emails and common domain typos (<code className="font-mono text-[11px]">gmial.com</code>) are flagged.</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span>Supports up to 2,000 attendees per batch with zero memory lag.</span>
+              </div>
+            </div>
+          </article>
+
+          {/* Guide Step 3: Invariant Guard & Human Review */}
+          <article className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 space-y-4 shadow-flat hover:shadow-tactile transition-all">
+            <div className="flex items-center justify-between">
+              <span className="font-pixel text-[11px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded border border-blue-200/60">
+                STEP 03
+              </span>
+              <ShieldCheck className="w-4 h-4 text-slate-400" />
+            </div>
+
+            <h3 className="text-base font-semibold text-slate-950 tracking-tight">
+              The Strict Name Invariant & Review Table
+            </h3>
+
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              AI models frequently hallucinate or modify letters. In galeus, an unbypassable Python rule checks <code className="font-mono text-slate-800 bg-slate-100 px-1 py-0.5 rounded text-xs">norm(raw) == norm(clean)</code>. Alphanumeric characters cannot be inserted, altered, or dropped.
+            </p>
+
+            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2 text-xs text-slate-600">
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span><strong>Inline editing</strong>: Double-click any cell in Step 2 to manually override names.</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span>Skip individual attendees with a single toggle if their data is invalid.</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span>Full audit comparison showing original vs cleaned strings side-by-side.</span>
+              </div>
+            </div>
+          </article>
+
+          {/* Guide Step 4: Font Fitting Loop */}
+          <article className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 space-y-4 shadow-flat hover:shadow-tactile transition-all">
+            <div className="flex items-center justify-between">
+              <span className="font-pixel text-[11px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded border border-blue-200/60">
+                STEP 04
+              </span>
+              <Scale className="w-4 h-4 text-slate-400" />
+            </div>
+
+            <h3 className="text-base font-semibold text-slate-950 tracking-tight">
+              Self-Correcting Sub-Pixel Font Fitting
+            </h3>
+
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              PyMuPDF calculates glyph bounding boxes to ensure names fit inside the placeholder region without clipping ornate certificate borders.
+            </p>
+
+            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2 text-xs text-slate-600">
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span><strong>Auto-Scaling</strong>: Font size dynamically scales down to 60% if text is wide.</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span><strong>Two-Line Wrapping</strong>: Very long names split gracefully across two centered lines.</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span>Step 3 displays high-res PNG previews with visual badges for all scaled certificates.</span>
+              </div>
+            </div>
+          </article>
+
+          {/* Guide Step 5: Email Customization */}
+          <article className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 space-y-4 shadow-flat hover:shadow-tactile transition-all">
+            <div className="flex items-center justify-between">
+              <span className="font-pixel text-[11px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded border border-blue-200/60">
+                STEP 05
+              </span>
+              <Mail className="w-4 h-4 text-slate-400" />
+            </div>
+
+            <h3 className="text-base font-semibold text-slate-950 tracking-tight">
+              Personalized Email Composition
+            </h3>
+
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              In Step 4, craft the email that each attendee receives with their personalized PDF attached.
+            </p>
+
+            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2 text-xs text-slate-600">
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span>Use variable merge chips like <code className="font-mono text-[11px]">{'{name}'}</code> and <code className="font-mono text-[11px]">{'{event}'}</code> in subject and body.</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span>One-click AI drafting generates professional, personalized templates in seconds.</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span>Instant live preview shows exactly how the email renders for the first recipient.</span>
+              </div>
+            </div>
+          </article>
+
+          {/* Guide Step 6: SHA-256 Gate & Crash-Safe SMTP */}
+          <article className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-7 space-y-4 shadow-flat hover:shadow-tactile transition-all">
+            <div className="flex items-center justify-between">
+              <span className="font-pixel text-[11px] font-bold text-blue-600 bg-blue-50 px-2 py-0.5 rounded border border-blue-200/60">
+                STEP 06 & 07
+              </span>
+              <Send className="w-4 h-4 text-slate-400" />
+            </div>
+
+            <h3 className="text-base font-semibold text-slate-950 tracking-tight">
+              Approval Lock, Secure SMTP & ZIP Export
+            </h3>
+
+            <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
+              Step 5 locks the batch with a cryptographic SHA-256 fingerprint. Zero emails can leave your computer without explicit human approval.
+            </p>
+
+            <div className="p-3.5 rounded-xl bg-slate-50 border border-slate-200/80 space-y-2 text-xs text-slate-600">
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span><strong>In-Memory Credentials</strong>: SMTP details exist only in RAM during dispatch; never written to disk.</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span><strong>Write-Ahead Logging (WAL)</strong>: Recovers from dropped Wi-Fi with zero duplicate sends.</span>
+              </div>
+              <div className="flex items-start gap-2">
+                <CheckCircle2 className="w-3.5 h-3.5 text-emerald-600 shrink-0 mt-0.5" />
+                <span>Download all certificates as a single ZIP and inspect the CSV audit trail.</span>
+              </div>
+            </div>
+          </article>
+        </div>
       </section>
 
       {/* 3. CORE ARCHITECTURAL GUARANTEES */}
       <section id="guarantees" aria-label="Architectural Guarantees" className="space-y-6">
         <div className="text-center max-w-xl mx-auto space-y-2">
           <h2 className="text-2xl font-bold tracking-tight text-slate-950">
-            Engineered for zero tolerance errors
+            Engineered for Zero Tolerance Errors
           </h2>
           <p className="text-xs sm:text-sm text-slate-600 leading-normal">
-            Most batch certificate tools silently misspell names, clip long text, or fail halfway through dispatches. galeus eliminates every failure mode with code-level guards.
+            Eliminating name misspellings, canvas collisions, and duplicate email dispatches with code-level assertions.
           </p>
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {/* Card 1 */}
           <article className="bg-white border border-slate-200/90 rounded-2xl p-6 space-y-3 shadow-flat hover:shadow-tactile hover:border-blue-200 transition-all">
             <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
               <ShieldCheck className="w-5 h-5" />
@@ -142,7 +333,6 @@ export default function Home() {
             </p>
           </article>
 
-          {/* Card 2 */}
           <article className="bg-white border border-slate-200/90 rounded-2xl p-6 space-y-3 shadow-flat hover:shadow-tactile hover:border-blue-200 transition-all">
             <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
               <Scale className="w-5 h-5" />
@@ -151,11 +341,10 @@ export default function Home() {
               Self-Correcting Font Fit Loop
             </h3>
             <p className="text-xs sm:text-sm text-slate-600 leading-relaxed">
-              PyMuPDF calculates exact bounding boxes before rendering. If a recipient has a long name, galeus automatically shrinks the font scale down to 60% or neatly splits the text onto two centered lines, preventing clipped borders and ruined Canva designs.
+              PyMuPDF calculates exact bounding boxes before rendering. If a recipient has a long name, galeus automatically shrinks font scale down to 60% or neatly splits the text onto two centered lines, preventing clipped borders and ruined Canva designs.
             </p>
           </article>
 
-          {/* Card 3 */}
           <article className="bg-white border border-slate-200/90 rounded-2xl p-6 space-y-3 shadow-flat hover:shadow-tactile hover:border-blue-200 transition-all">
             <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
               <Lock className="w-5 h-5" />
@@ -168,7 +357,6 @@ export default function Home() {
             </p>
           </article>
 
-          {/* Card 4 */}
           <article className="bg-white border border-slate-200/90 rounded-2xl p-6 space-y-3 shadow-flat hover:shadow-tactile hover:border-blue-200 transition-all">
             <div className="w-10 h-10 rounded-xl bg-blue-50 flex items-center justify-center text-blue-600">
               <HardDrive className="w-5 h-5" />
@@ -183,71 +371,34 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 4. THE 7-STEP WORKFLOW PROGRESSION */}
-      <section id="workflow" aria-label="7-Step Workflow Progression" className="space-y-6">
-        <div className="text-center max-w-xl mx-auto space-y-2">
-          <h2 className="text-2xl font-bold tracking-tight text-slate-950">
-            The 7-Step Verified Workflow
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 leading-normal">
-            A linear, foolproof journey from raw files to verified dispatches.
-          </p>
+      {/* 4. CALL TO ACTION BANNER (TRANSITION TO STUDIO) */}
+      <section aria-label="Launch Studio Call to Action" className="bg-gradient-to-b from-slate-950 to-slate-900 rounded-3xl p-8 sm:p-12 text-center text-white space-y-5 shadow-juicy">
+        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-400/20 text-xs font-medium text-blue-300">
+          <Sparkles className="w-3.5 h-3.5 text-blue-400" />
+          <span>Ready to Process Certificates?</span>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-7 gap-3">
-          {[
-            { step: "01", title: "Ingest", desc: "Canva PDF & roster sheet", icon: FileSpreadsheet },
-            { step: "02", title: "Review", desc: "Invariant & typo check", icon: Sliders },
-            { step: "03", title: "Preview", desc: "High-res PNG renders", icon: Eye },
-            { step: "04", title: "Draft", desc: "Personalized email template", icon: Mail },
-            { step: "05", title: "Approve", desc: "SHA-256 batch lock", icon: Lock },
-            { step: "06", title: "Dispatch", desc: "WAL crash-proof SMTP", icon: Send },
-            { step: "07", title: "Report", desc: "ZIP archive & audit log", icon: FileCheck },
-          ].map((item) => (
-            <div
-              key={item.step}
-              className="bg-white border border-slate-200/90 rounded-xl p-4 flex flex-col justify-between text-left shadow-flat hover:border-blue-300 hover:shadow-tactile transition-all"
-            >
-              <div className="space-y-2">
-                <div className="flex items-center justify-between">
-                  <span className="font-pixel text-[10px] font-bold text-slate-400">
-                    {item.step}
-                  </span>
-                  <item.icon className="w-4 h-4 text-slate-700" />
-                </div>
-                <h4 className="text-xs font-semibold text-slate-900">
-                  {item.title}
-                </h4>
-              </div>
-              <p className="text-[11px] text-slate-500 mt-2 leading-tight">
-                {item.desc}
-              </p>
-            </div>
-          ))}
+        <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white max-w-xl mx-auto">
+          Start your certificate batch in the galeus studio.
+        </h2>
+
+        <p className="text-xs sm:text-sm text-slate-400 max-w-md mx-auto leading-relaxed">
+          Upload your single-page Canva PDF and attendee list to generate, preview, and dispatch in minutes.
+        </p>
+
+        <div className="pt-2">
+          <Link
+            href="/studio"
+            className="inline-flex items-center gap-2 px-7 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium text-sm transition-all duration-150 active:scale-[0.98] shadow-tactile cursor-pointer"
+          >
+            <Layers className="w-4 h-4 shrink-0" />
+            <span>Open Studio Workstation</span>
+            <ArrowRight className="w-4 h-4 shrink-0" />
+          </Link>
         </div>
       </section>
 
-      {/* 5. BATCH STUDIO WORKSTATION (UPLOAD FORM) */}
-      <section id="studio" aria-label="Batch Studio" className="space-y-6 pt-4">
-        <div className="text-center max-w-xl mx-auto space-y-2">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-medium mb-1 border border-blue-200/60">
-            <Layers className="w-3.5 h-3.5" />
-            <span>galeus Studio Workstation</span>
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-950">
-            Create New Certificate Batch
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 leading-normal">
-            Drop your single-page Canva PDF template and attendee spreadsheet below to begin.
-          </p>
-        </div>
-
-        <div className="max-w-3xl mx-auto bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-flat">
-          <UploadForm onSuccess={handleUploadSuccess} />
-        </div>
-      </section>
-
-      {/* 6. SEMANTIC FOOTER */}
+      {/* 5. SEMANTIC FOOTER */}
       <footer aria-label="Site Footer" className="pt-10 pb-8 border-t border-slate-200/80 text-center space-y-3 text-xs text-slate-500">
         <div className="flex items-center justify-center mb-2">
           <Image
@@ -260,21 +411,17 @@ export default function Home() {
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-slate-600">
-          <a href="#playground" className="hover:text-blue-600 transition-colors">
-            Playground
+          <a href="#guide" className="hover:text-blue-600 transition-colors">
+            Documentation & How-To
           </a>
           <span>•</span>
           <a href="#guarantees" className="hover:text-blue-600 transition-colors">
             Guarantees
           </a>
           <span>•</span>
-          <a href="#workflow" className="hover:text-blue-600 transition-colors">
-            Workflow
-          </a>
-          <span>•</span>
-          <a href="#studio" className="hover:text-blue-600 transition-colors">
+          <Link href="/studio" className="hover:text-blue-600 transition-colors">
             Studio
-          </a>
+          </Link>
           <span>•</span>
           <a
             href="https://github.com/Ameya79/certclerk"

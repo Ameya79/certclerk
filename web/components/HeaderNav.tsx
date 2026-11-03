@@ -2,14 +2,18 @@
 
 import React, { useState, useEffect } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { LlmStatus } from "../lib/types";
 import { getLlmSettings } from "../lib/api";
 import AiSettingsModal from "./AiSettingsModal";
-import { Sparkles, ArrowRight, Laptop } from "lucide-react";
+import { Sparkles, ArrowRight, BookOpen, Layers } from "lucide-react";
 
 export default function HeaderNav() {
+  const pathname = usePathname();
   const [llmStatus, setLlmStatus] = useState<LlmStatus | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const isStudioPage = pathname === "/studio";
 
   const fetchStatus = () => {
     getLlmSettings()
@@ -29,22 +33,26 @@ export default function HeaderNav() {
         {/* Nav Links */}
         <div className="hidden md:flex items-center gap-1 mr-1 text-xs font-medium text-slate-600">
           <Link
-            href="/#playground"
+            href="/"
+            className={`px-3 py-1.5 rounded-lg transition-colors ${
+              !isStudioPage
+                ? "text-slate-950 font-semibold bg-slate-100/60"
+                : "hover:bg-slate-100/80 hover:text-slate-950"
+            }`}
+          >
+            Docs & Guide
+          </Link>
+          <Link
+            href="/#guide"
             className="px-3 py-1.5 rounded-lg hover:bg-slate-100/80 hover:text-slate-950 transition-colors"
           >
-            Playground
+            How to Use
           </Link>
           <Link
             href="/#guarantees"
             className="px-3 py-1.5 rounded-lg hover:bg-slate-100/80 hover:text-slate-950 transition-colors"
           >
             Guarantees
-          </Link>
-          <Link
-            href="/#workflow"
-            className="px-3 py-1.5 rounded-lg hover:bg-slate-100/80 hover:text-slate-950 transition-colors"
-          >
-            Workflow
           </Link>
         </div>
 
@@ -82,14 +90,25 @@ export default function HeaderNav() {
           <span className="font-medium text-slate-700">Local Device</span>
         </div>
 
-        {/* Launch Studio CTA (Flat, Tactile, Juicy) */}
-        <a
-          href="/#studio"
-          className="px-3.5 py-1.5 rounded-lg bg-slate-950 hover:bg-blue-600 text-white text-xs font-medium flex items-center gap-1.5 transition-all duration-150 active:scale-[0.98] shadow-tactile shrink-0 cursor-pointer"
-        >
-          <span>Launch Studio</span>
-          <ArrowRight className="w-3.5 h-3.5 shrink-0" />
-        </a>
+        {/* Page Switcher CTA Button */}
+        {isStudioPage ? (
+          <Link
+            href="/"
+            className="px-3.5 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 text-xs font-medium flex items-center gap-1.5 transition-all duration-150 active:scale-[0.98] shadow-flat shrink-0"
+          >
+            <BookOpen className="w-3.5 h-3.5 text-slate-600 shrink-0" />
+            <span>Read Docs</span>
+          </Link>
+        ) : (
+          <Link
+            href="/studio"
+            className="px-3.5 py-1.5 rounded-lg bg-slate-950 hover:bg-blue-600 text-white text-xs font-medium flex items-center gap-1.5 transition-all duration-150 active:scale-[0.98] shadow-tactile shrink-0"
+          >
+            <Layers className="w-3.5 h-3.5 shrink-0" />
+            <span>Open Studio</span>
+            <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+          </Link>
+        )}
       </nav>
 
       <AiSettingsModal
