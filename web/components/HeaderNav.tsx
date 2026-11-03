@@ -33,12 +33,6 @@ export default function HeaderNav() {
         {/* Nav Links */}
         <div className="hidden md:flex items-center gap-1 mr-1 text-xs font-medium text-slate-600">
           <Link
-            href="/#demo"
-            className="px-3 py-1.5 rounded-lg hover:bg-slate-100/80 hover:text-slate-950 transition-colors"
-          >
-            Motion Story
-          </Link>
-          <Link
             href="/studio"
             className="px-3 py-1.5 rounded-lg hover:bg-slate-100/80 hover:text-slate-950 transition-colors"
           >

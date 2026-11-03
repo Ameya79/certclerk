@@ -12,7 +12,6 @@ import {
   HardDrive,
   CheckCircle2,
   Sparkles,
-  Zap,
 } from "lucide-react";
 
 export default function Home() {
@@ -42,24 +41,16 @@ export default function Home() {
           <strong className="text-slate-950 font-semibold">galeus</strong> is an agentic certificate workstation that standardizes attendee names, verifies mathematical letter invariants, auto-scales Canva typography, and dispatches via your SMTP only with human approval.
         </p>
 
-        {/* Intro 4: Dual Action Buttons */}
-        <div className="animate-intro-4 flex flex-col sm:flex-row items-center justify-center gap-3 pt-2">
+        {/* Intro 4: Single Focused Action Button */}
+        <div className="animate-intro-4 flex items-center justify-center pt-2">
           <Link
             href="/studio"
-            className="w-full sm:w-auto px-7 py-4 rounded-xl bg-slate-950 hover:bg-blue-600 text-white font-medium text-sm flex items-center justify-center gap-2 transition-all duration-150 active:scale-[0.98] shadow-tactile hover:shadow-juicy"
+            className="w-full sm:w-auto px-8 py-4 rounded-xl bg-slate-950 hover:bg-blue-600 text-white font-medium text-sm flex items-center justify-center gap-2 transition-all duration-150 active:scale-[0.98] shadow-tactile hover:shadow-juicy"
           >
             <Layers className="w-4 h-4 shrink-0" />
             <span>Open Studio Workstation</span>
             <ArrowRight className="w-4 h-4 shrink-0" />
           </Link>
-
-          <a
-            href="#demo"
-            className="w-full sm:w-auto px-7 py-4 rounded-xl bg-white hover:bg-slate-50 text-slate-800 border border-slate-200/90 font-medium text-sm flex items-center justify-center gap-2 transition-all duration-150 active:scale-[0.98] shadow-flat"
-          >
-            <Zap className="w-4 h-4 text-blue-600 shrink-0" />
-            <span>Watch Motion Story</span>
-          </a>
         </div>
 
         {/* Intro 5: Trust Strip */}
@@ -83,21 +74,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* 2. CENTERPIECE MOTION GRAPHIC AD (WHAT THE AGENT DOES FOR YOU) */}
-      <section id="demo" aria-label="What The Agent Does" className="space-y-4">
-        <div className="text-center max-w-2xl mx-auto space-y-2">
-          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-blue-50 text-blue-700 text-xs font-medium border border-blue-200/60">
-            <Sparkles className="w-3.5 h-3.5 text-blue-600" />
-            <span>Interactive Motion Demonstration</span>
-          </div>
-          <h2 className="text-2xl sm:text-3xl font-bold tracking-tight text-slate-950">
-            What the galeus Agent Does For You
-          </h2>
-          <p className="text-xs sm:text-sm text-slate-600 leading-normal max-w-xl mx-auto">
-            From 15 hours of repetitive manual edits to an automated 5-step invariant flow: watch the agent inspect, clean, render, lock, and dispatch certificates without hallucinations.
-          </p>
-        </div>
-
+      {/* 2. CENTERPIECE MOTION GRAPHIC AD (CLEAN & DIRECT) */}
+      <section aria-label="Product Demonstration" className="pt-2">
         <MotionGraphicPlayer />
       </section>
 
@@ -141,16 +119,12 @@ export default function Home() {
         </div>
 
         <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-slate-600">
-          <a href="#demo" className="hover:text-blue-600 transition-colors">
-            Motion Story
-          </a>
-          <span>•</span>
           <Link href="/studio" className="hover:text-blue-600 transition-colors">
             Studio Workstation
           </Link>
           <span>•</span>
           <a
-            href="https://github.com/Ameya79/certclerk"
+            href="https://github.com/Ameya79/galeus"
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-blue-600 transition-colors"
