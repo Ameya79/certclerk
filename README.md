@@ -28,7 +28,13 @@ Experience the full interactive workstation right in your browser:
 ## 🎥 Walkthrough Video
 
 <p align="center">
-  <video src="assets/galeusvideo.mp4" controls="controls" muted="muted" width="100%" style="border-radius: 14px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.08);"></video>
+  <a href="https://github.com/Ameya79/galeus/blob/main/assets/galeusvideo.mp4">
+    <img src="assets/galeus-walkthrough.gif" alt="galeus Walkthrough Video" width="100%" style="border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.08);" />
+  </a>
+</p>
+
+<p align="center">
+  🎬 <a href="https://github.com/Ameya79/galeus/blob/main/assets/galeusvideo.mp4"><strong>Watch Full HD Video in GitHub Player</strong></a> &nbsp;•&nbsp; ⚡ <a href="https://galeus.vercel.app/"><strong>Open Live Interactive Demo</strong></a> &nbsp;•&nbsp; 📥 <a href="https://raw.githubusercontent.com/Ameya79/galeus/main/assets/galeusvideo.mp4"><strong>Download MP4 (19MB)</strong></a>
 </p>
 
 ---

@@ -58,7 +58,16 @@ Every interface must be engineered like precision desktop software (Linear, Rayc
 ## 11. Header Status Chip & Modal Viewport Hygiene
 - **No Mashed Labels**: Do not combine two disparate concepts with pipes inside a single button (e.g. avoid `Rules Engine | Config`). Use clean, recognizable badge icons with clear status indicators.
 - **Accurate Model Identifiers**: Always use verified, active model strings (e.g. `gemini-2.0-flash` or `gemini-1.5-flash`, never unreleased version numbers).
-- **Modal Viewport Hygiene**: Modals must be centered with `fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/40 backdrop-blur-sm`, with z-index above all navigation headers.
+- **Modal Viewport Hygiene & Clamping Invariant**:
+  - Modals must be wrapped in `fixed inset-0 z-50 overflow-y-auto bg-slate-950/60 backdrop-blur-xs flex min-h-full items-center justify-center p-3 sm:p-4`.
+  - The dialog container must have `relative w-full max-w-lg my-auto max-h-[calc(100vh-2rem)] flex flex-col rounded-2xl bg-white border border-slate-200 shadow-2xl overflow-hidden`.
+  - The Header must have `shrink-0` (never clipped off-screen on short viewports).
+  - The Body must have `flex-1 overflow-y-auto` (smooth scrollable content).
+  - The Action Footer must have `shrink-0` (buttons pinned at bottom, always visible).
 
 ## 12. Repository Media & Native Video Invariant
-- High-craft READMEs must embed official branding banners at the top (`assets/galeus-hero-banner.png`) and include actual `.mp4` video walkthroughs natively using HTML5 `<video controls width="100%">` tags rather than plain text descriptions.
+- **GitHub README Media Sanitization**: GitHub strictly strips relative `<video src="assets/..."></video>` tags.
+- High-craft READMEs must embed:
+  1. Official branding banner at the top (`assets/galeus-hero-banner.png`).
+  2. High-res animated walkthrough preview (`assets/galeus-walkthrough.gif` <= 10MB) linking to GitHub's native video player (`https://github.com/<owner>/<repo>/blob/main/assets/video.mp4`).
+  3. Prominent CTA buttons right below the preview for HD Video in GitHub player, live interactive web demo, and direct MP4 download.

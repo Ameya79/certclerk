@@ -189,31 +189,35 @@ export default function AiSettingsModal({ isOpen, onClose, onStatusChange }: AiS
 
   return (
     <div
-      className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/60 backdrop-blur-xs flex min-h-full items-center justify-center p-3 sm:p-4 animate-in fade-in duration-150"
       onClick={onClose}
     >
       <div
-        className="bg-white border border-slate-200 rounded-2xl max-w-lg w-full p-5 sm:p-6 shadow-md relative space-y-4"
+        className="bg-white border border-slate-200 rounded-2xl max-w-lg w-full my-auto shadow-2xl relative flex flex-col max-h-[calc(100vh-2rem)] overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Header */}
-        <div className="flex items-center justify-between pb-3 border-b border-slate-100">
+        {/* Header - Fixed & Pinned at Top */}
+        <div className="flex items-center justify-between px-5 py-4 border-b border-slate-100 shrink-0">
           <div className="flex items-center gap-2.5">
-            <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-800">
+            <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-800 shrink-0">
               <Sparkles className="w-4 h-4 text-indigo-600" />
             </div>
             <div>
-              <h3 className="font-bold text-sm text-slate-900">AI Agent Provider Settings</h3>
-              <p className="text-[11px] text-slate-500">Configure free AI keys for name standardization & email drafting</p>
+              <h3 className="font-bold text-sm text-slate-900 leading-tight">AI Agent Provider Settings</h3>
+              <p className="text-[11px] text-slate-500 mt-0.5">Configure free AI keys for name standardization & email drafting</p>
             </div>
           </div>
           <button
             onClick={onClose}
-            className="p-1 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
+            className="p-1 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors cursor-pointer shrink-0"
+            aria-label="Close dialog"
           >
             <X className="w-4 h-4" />
           </button>
         </div>
+
+        {/* Scrollable Body Container */}
+        <div className="p-5 overflow-y-auto space-y-4 flex-1">
 
         {/* Preset Selector */}
         <div>
@@ -421,8 +425,10 @@ export default function AiSettingsModal({ isOpen, onClose, onStatusChange }: AiS
           </div>
         )}
 
-        {/* Action Buttons */}
-        <div className="flex flex-wrap items-center justify-between gap-2 pt-2 border-t border-slate-100">
+        </div>
+
+        {/* Action Buttons - Fixed & Pinned at Bottom */}
+        <div className="flex flex-wrap items-center justify-between gap-2 px-5 py-3.5 border-t border-slate-100 bg-slate-50/50 shrink-0">
           <button
             type="button"
             onClick={handleClear}

@@ -148,35 +148,39 @@ export default function PreviewGrid({ job, onProceed }: PreviewGridProps) {
       {/* Modal */}
       {modalRow && (
         <div
-          className="fixed inset-0 z-50 bg-slate-900/50 backdrop-blur-xs flex items-center justify-center p-4 animate-in fade-in duration-150"
+          className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/60 backdrop-blur-xs flex min-h-full items-center justify-center p-3 sm:p-4 animate-in fade-in duration-150"
           onClick={() => setModalRow(null)}
         >
           <div
-            className="bg-white border border-slate-200 rounded-2xl max-w-4xl w-full p-5 sm:p-6 shadow-md relative"
+            className="bg-white border border-slate-200 rounded-2xl max-w-4xl w-full my-auto p-5 sm:p-6 shadow-2xl relative max-h-[calc(100vh-2rem)] flex flex-col overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
-            <button
-              onClick={() => setModalRow(null)}
-              className="absolute top-4 right-4 p-1.5 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
-            >
-              <X className="w-5 h-5" />
-            </button>
-
-            <div className="mb-3.5">
-              <h3 className="font-bold text-base text-slate-900">{modalRow.clean_name}</h3>
-              <p className="text-xs text-slate-500 font-mono">Row #{modalRow.row_id}</p>
+            <div className="flex items-start justify-between mb-3 shrink-0">
+              <div>
+                <h3 className="font-bold text-base text-slate-900">{modalRow.clean_name}</h3>
+                <p className="text-xs text-slate-500 font-mono">Row #{modalRow.row_id}</p>
+              </div>
+              <button
+                onClick={() => setModalRow(null)}
+                className="p-1.5 rounded-lg hover:bg-slate-100 text-slate-400 hover:text-slate-600 transition-colors cursor-pointer"
+                aria-label="Close preview"
+              >
+                <X className="w-5 h-5" />
+              </button>
             </div>
 
-            <div className="aspect-[1.414] bg-slate-50 rounded-xl overflow-hidden border border-slate-200 mb-3.5">
-              <img
-                src={`/api/jobs/${job.job_id}/preview/${modalRow.row_id}.png`}
-                alt={modalRow.clean_name}
-                className="w-full h-full object-contain"
-              />
+            <div className="flex-1 overflow-y-auto flex flex-col items-center justify-center min-h-0 mb-3">
+              <div className="w-full aspect-[1.414] max-h-[60vh] bg-slate-50 rounded-xl overflow-hidden border border-slate-200 flex items-center justify-center">
+                <img
+                  src={`/api/jobs/${job.job_id}/preview/${modalRow.row_id}.png`}
+                  alt={modalRow.clean_name}
+                  className="max-w-full max-h-full object-contain"
+                />
+              </div>
             </div>
 
             {modalRow.fit && (
-              <div className="p-3 rounded-lg bg-slate-50 text-xs text-slate-600 flex flex-wrap gap-4 border border-slate-100">
+              <div className="p-3 rounded-lg bg-slate-50 text-xs text-slate-600 flex flex-wrap gap-4 border border-slate-100 shrink-0">
                 <span>
                   Scale: <strong className="text-slate-900">{Math.round(modalRow.fit.scale * 100)}%</strong>
                 </span>
