@@ -186,6 +186,11 @@ def _make_audit(job_id: str):
 # Endpoints
 # ---------------------------------------------------------------------------
 
+@app.get("/")
+async def root():
+    return {"service": "galeus", "status": "online", "docs": "/docs", "health": "/healthz"}
+
+
 @app.get("/healthz")
 async def health():
     """Liveness check — must stay fast even during heavy jobs."""
