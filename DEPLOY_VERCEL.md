@@ -1,99 +1,86 @@
-# How to Deploy galeus for Free (Step-by-Step, No Credit Card)
+# Deploy galeus with Vercel + Hugging Face (100% Free, No Credit Card)
 
-This guide shows you how to put **galeus** online so anyone in the world can open your link, upload their Canva certificates, and generate certificates.
+This guide shows you how to deploy **galeus** using **Vercel** (for the frontend website) and **Hugging Face Spaces** (for the Python backend engine).
 
-It is **100% free** and requires **zero credit cards**.
-
----
-
-## The Simple Concept
-
-Think of **galeus** as a car with two parts:
-
-1. **The Body (The Frontend Website)**: What people see and click on. We put this on **Vercel** (the most popular free website host).
-2. **The Engine (The Backend)**: The Python code that actually edits the PDFs, checks names, and sends emails. We put this on **Render** (a free cloud host that runs Python).
-
-Once both are turned on, Vercel connects to Render automatically behind the scenes. Your users only ever see your clean Vercel link!
+- **Cost**: **$0.00 forever**
+- **Credit Card Required**: **NO** (Zero payment details asked)
+- **RAM**: **16 GB RAM** & 2 vCPUs (32x more powerful than Render!)
 
 ---
 
-## Step 1: Turn on the Engine (Render — 3 Minutes)
+## Does Hugging Face Have Sleep Issues Like Render?
 
-*Render hosts the Python engine for free. You sign up using your GitHub account—it will never ask you for a credit card.*
-
-1. Open **[render.com](https://render.com/)** in your browser.
-2. Click **Get Started for Free** and choose **Sign in with GitHub**.
-3. Once logged in, click the blue **New +** button in the top right corner and choose **Web Service**.
-4. Choose **Build and deploy from a Git repository**, then click **Next**.
-5. Find and click your repository: **`Ameya79/galeus`**.
-6. Fill in these 4 simple fields:
-   - **Name**: Type `galeus-api` (or any name you like).
-   - **Region**: Pick the one closest to you (e.g., Singapore, Frankfurt, or Oregon).
-   - **Environment / Runtime**: Select **Docker** (Render will automatically read your `Dockerfile`).
-   - **Instance Type**: Select **Free** ($0 / month).
-7. Scroll down to the **Environment Variables** section, click **Add Environment Variable**, and add:
-   - **Key**: `DATA_DIR`
-   - **Value**: `/tmp/data`
-8. Click the blue **Create Web Service** button at the bottom.
-9. Render will take about 2–3 minutes to build the engine. When it finishes, you will see a green **Live** badge at the top.
-10. **Copy your engine's link**: Right under your project name at the top left, copy the link that ends in `.onrender.com` (for example: `https://galeus-api-xyz.onrender.com`).
-
-*Keep this link copied! You will paste it into Vercel in Step 2.*
+| Feature | Render (Free Tier) | Hugging Face Spaces (Free) |
+| :--- | :--- | :--- |
+| **Goes to sleep after** | **15 minutes** of no visits | **48 hours** (2 full days) of no visits |
+| **Wake-up time** | 30 to 50 seconds (slow) | 5 to 10 seconds (fast) |
+| **Can you keep it awake 24/7?** | ❌ No (Render blocks keep-alive pings) | ✅ **Yes!** (Pinging it once a day keeps it awake 24/7) |
+| **Free Memory** | 512 MB | **16,000 MB (16 GB)** |
 
 ---
 
-## Step 2: Put the Website on the Internet (Vercel — 2 Minutes)
+## Step 1: Deploy the Python Engine on Hugging Face (3 Minutes)
 
-*Vercel hosts the website for free. It gives you a fast, beautiful link like `https://galeus.vercel.app`.*
-
-1. Open **[vercel.com](https://vercel.com/)** in your browser.
-2. Click **Sign Up** (or Log In) and choose **Continue with GitHub**.
-3. On your Vercel dashboard, click **Add New...** (top right) ➔ click **Project**.
-4. You will see a list of your GitHub repos. Find **`galeus`** (or `Ameya79/galeus`) and click **Import**.
-5. On the configure screen, configure these two things:
-   - **Root Directory**: Click the **Edit** button next to Root Directory. Select the **`web`** folder and click **Continue**. *(This is very important because the website code lives in the `web` folder!)*
-   - **Environment Variables**: Click to open this section. Add one variable:
-     - **Key**: `BACKEND_URL`
-     - **Value**: Paste the Render link you copied in Step 1 (e.g. `https://galeus-api-xyz.onrender.com`).
-6. Click the blue **Deploy** button!
-7. Wait about 60 seconds. Fireworks will shoot across your screen saying **Congratulations!**
-8. Click on the preview image or the domain link (e.g. `https://galeus-iota.vercel.app`) to open your live website!
-
----
-
-## Step 3: Test That Everything Works
-
-1. Open your new Vercel link in your browser.
-2. You will see the **galeus** homepage with your animated motion graphic ad playing.
-3. Click the big black button: **Open Studio Workstation**.
-4. At the top of the studio page, look at the engine status pill:
-   - It should say: `● LOCAL_DISPATCH_ENGINE: READY`.
-5. Upload a single-page Canva certificate PDF and an attendee spreadsheet (CSV or Excel).
-6. Click **Initialize Batch Pipeline**.
-7. If your table of attendees loads with clean names and green tick marks, **congratulations! Your app is 100% working live on the internet!**
-
----
-
-## 3 Helpful Things to Know
-
-### 1. Why does my first click take 30 to 45 seconds?
-Because Render's free tier is completely free, it puts the Python engine to sleep after 15 minutes if nobody is using it to save electricity. When a new user visits, it takes about 30 seconds to wake up. Once awake, it is lightning fast for all certificates.
-
-### 2. Can I use my own custom domain?
-Yes! On Vercel, go to **Settings** ➔ **Domains**, type your custom domain (like `galeus.com` or `certificates.myclub.com`), and Vercel will guide you through setting it up with free automatic SSL.
-
-### 3. Do I ever have to pay anything?
-No. Both Vercel's Hobby plan and Render's Free tier are genuinely free forever for personal, school, hackathon, and club projects.
-
----
-
-## Alternative: Hugging Face Spaces (Also 100% Free, Never Goes to Sleep)
-
-If you don't want Render's 30-second wake-up time, you can also host the engine on **Hugging Face Spaces** for free (with 16GB of RAM and zero credit card):
-
-1. Go to **[huggingface.co](https://huggingface.co)** and sign up with GitHub.
+1. Open **[huggingface.co](https://huggingface.co/)** and click **Sign Up** (Sign in with your GitHub account—no card needed).
 2. Go to **[huggingface.co/new-space](https://huggingface.co/new-space)**.
-3. Name it `galeus-engine`. Under **Space SDK**, select **Docker** ➔ **Blank**.
-4. Choose the **Free (16GB RAM, 2 CPU)** tier.
-5. Push your code or connect your GitHub repo.
-6. Copy the direct URL (ends in `.hf.space`) and paste it as `BACKEND_URL` in Vercel.
+3. Fill in these fields:
+   - **Space Name**: `galeus` (or `galeus-api`)
+   - **License**: `mit`
+   - **Select Space SDK**: Choose **Docker** ➔ select **Blank**.
+   - **Space Hardware**: Keep the default **Free (2 vCPU, 16GB RAM)**.
+   - **Visibility**: **Public**.
+4. Click the blue **Create Space** button.
+5. You will see a page with git instructions. Now push your code to your new space:
+   Open PowerShell on your computer and run:
+   ```powershell
+   cd c:\Users\vinay\OneDrive\Desktop\certclerk
+   git remote add space https://huggingface.co/spaces/YOUR_HF_USERNAME/galeus
+   git push space main
+   ```
+   *(Replace `YOUR_HF_USERNAME` with your Hugging Face username, and enter your HF password or Access Token if asked).*
+6. Hugging Face will now automatically build your Docker container. In about 60–90 seconds, you will see a green badge saying **Running**.
+7. **Find your direct link**:
+   - In your Space, click the **three dots menu (`...`)** at the top right ➔ click **Embed this Space**.
+   - Look for **Direct URL**.
+   - It will look like: `https://YOUR_HF_USERNAME-galeus.hf.space`.
+   - Copy this URL!
+
+*Test it: Open `https://YOUR_HF_USERNAME-galeus.hf.space/healthz` in your browser. It will reply `{"ok":true,"service":"galeus"}`!*
+
+---
+
+## Step 2: Put the Website on Vercel (2 Minutes)
+
+1. Open **[vercel.com](https://vercel.com/)** and sign in with GitHub.
+2. Click **Add New...** (top right) ➔ click **Project**.
+3. Find your **`galeus`** repo (or `Ameya79/galeus`) and click **Import**.
+4. Configure two settings:
+   - **Root Directory**: Click **Edit** next to Root Directory. Select the **`web`** folder and click **Continue**.
+   - **Environment Variables**: Open this section and add:
+     - **Key**: `BACKEND_URL`
+     - **Value**: Paste your Hugging Face direct link (e.g. `https://YOUR_HF_USERNAME-galeus.hf.space`).
+5. Click **Deploy**.
+6. Wait 60 seconds. When the fireworks appear, click your new link (e.g. `https://galeus.vercel.app`)!
+
+---
+
+## Step 3: Test Your Live App
+
+1. Open your live Vercel link.
+2. Click **Open Studio Workstation**.
+3. Notice the top status pill: `● LOCAL_DISPATCH_ENGINE: READY`.
+4. Upload your Canva certificate PDF and attendee spreadsheet.
+5. Click **Initialize Batch Pipeline**.
+6. Watch your attendees load with formatted names, zero typos, and 16GB-powered PyMuPDF rendering!
+
+---
+
+## Bonus: How to Keep Hugging Face Awake 24/7 for Free
+
+Because Hugging Face only sleeps after 48 hours of complete silence, you can keep it awake permanently:
+
+1. Go to **[cron-job.org](https://cron-job.org)** or **[uptimerobot.com](https://uptimerobot.com)** (both 100% free, no credit card).
+2. Create a monitor to ping:
+   `https://YOUR_HF_USERNAME-galeus.hf.space/healthz`
+   every 12 hours.
+3. Your backend will **never go to sleep**, meaning zero startup delay for you and your users at all times!

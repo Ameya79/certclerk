@@ -15,9 +15,9 @@ COPY api/ api/
 
 ENV DATA_DIR=/data
 ENV BACKEND_URL=http://localhost:8000
+RUN mkdir -p /data && chmod 777 /data
 VOLUME /data
 
-EXPOSE 8000
+EXPOSE 7860 8000
 
-CMD ["sh", "-c", "uvicorn api.main:app --host 0.0.0.0 --port ${PORT:-8000} --workers 1"]
-
+CMD ["sh", "-c", "uvicorn api.main:app --host 0.0.0.0 --port ${PORT:-7860} --workers 1"]
