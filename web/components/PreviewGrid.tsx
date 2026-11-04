@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { Job, Recipient } from "../lib/types";
 import { AlertTriangle, CheckCircle, X, ZoomIn, ArrowRight } from "lucide-react";
 
@@ -12,6 +13,11 @@ interface PreviewGridProps {
 export default function PreviewGrid({ job, onProceed }: PreviewGridProps) {
   const [filter, setFilter] = useState<"all" | "warnings">("all");
   const [modalRow, setModalRow] = useState<Recipient | null>(null);
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const nonSkipped = (job.recipients || []).filter((r) => r.status !== "skipped");
 
@@ -145,14 +151,14 @@ export default function PreviewGrid({ job, onProceed }: PreviewGridProps) {
         })}
       </div>
 
-      {/* Modal */}
-      {modalRow && (
+      {/* Modal with Portal */}
+      {mounted && modalRow && createPortal(
         <div
-          className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/60 backdrop-blur-xs flex min-h-full items-center justify-center p-3 sm:p-4 animate-in fade-in duration-150"
+          className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-sm flex min-h-full items-center justify-center p-3 sm:p-4"
           onClick={() => setModalRow(null)}
         >
           <div
-            className="bg-white border border-slate-200 rounded-2xl max-w-4xl w-full my-auto p-5 sm:p-6 shadow-2xl relative max-h-[calc(100vh-2rem)] flex flex-col overflow-hidden"
+            className="bg-white border border-slate-200 rounded-2xl max-w-4xl w-full my-auto p-4 sm:p-6 shadow-2xl relative max-h-[calc(100vh-2rem)] flex flex-col overflow-hidden animate-fade-in-up"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex items-start justify-between mb-3 shrink-0">
@@ -199,15 +205,16 @@ export default function PreviewGrid({ job, onProceed }: PreviewGridProps) {
               </div>
             )}
           </div>
-        </div>
+        </div>,
+        document.body
       )}
 
       {/* Action Footer */}
-      <div className="flex items-center justify-between pt-2">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center sm:justify-between gap-3 pt-2">
         <p className="text-xs text-slate-500">Previews reflect pixel-accurate PDF rendering with custom typography.</p>
         <button
           onClick={onProceed}
-          className="py-2.5 px-5 rounded-xl bg-slate-900 hover:bg-black text-white font-medium text-xs sm:text-sm flex items-center gap-1.5 transition-all duration-150 active:scale-95 cursor-pointer"
+          className="w-full sm:w-auto justify-center py-2.5 px-5 rounded-xl bg-slate-900 hover:bg-black text-white font-medium text-xs sm:text-sm flex items-center gap-1.5 transition-all duration-150 active:scale-95 cursor-pointer"
         >
           Proceed to Email Setup
           <ArrowRight className="w-4 h-4" />

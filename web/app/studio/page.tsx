@@ -42,7 +42,7 @@ export default function StudioPage() {
 
           <div className="flex items-center gap-2 shrink-0">
             <span className="font-pixel text-[10px] font-medium px-2 py-0.5 rounded bg-blue-50 text-blue-700 border border-blue-200/80">
-              DESKTOP MODE
+              LOCAL PIPELINE
             </span>
           </div>
         </div>
@@ -51,7 +51,7 @@ export default function StudioPage() {
       {/* Main Studio Ingest Station */}
       <section
         aria-label="Upload and Parameters Dock"
-        className="bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 shadow-flat hover:shadow-tactile transition-shadow"
+        className="bg-white border border-slate-200/90 rounded-2xl p-4 sm:p-8 shadow-flat hover:shadow-tactile transition-shadow"
       >
         <UploadForm onSuccess={handleUploadSuccess} />
       </section>

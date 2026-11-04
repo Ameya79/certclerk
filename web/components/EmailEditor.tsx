@@ -85,7 +85,7 @@ export default function EmailEditor({ job, onRefresh, onProceed }: EmailEditorPr
               type="text"
               value={eventName}
               onChange={(e) => setEventName(e.target.value)}
-              className="w-full px-3 py-2 text-xs rounded-lg border border-slate-200 bg-white font-medium focus:border-slate-400 transition-colors"
+              className="w-full px-3 py-2 text-base sm:text-xs rounded-lg border border-slate-200 bg-white font-medium focus:border-slate-400 transition-colors"
               placeholder="e.g. AI Hackathon 2026"
             />
           </div>
@@ -98,7 +98,7 @@ export default function EmailEditor({ job, onRefresh, onProceed }: EmailEditorPr
               type="text"
               value={subject}
               onChange={(e) => setSubject(e.target.value)}
-              className="w-full px-3 py-2 text-xs rounded-lg border border-slate-200 bg-white font-medium focus:border-slate-400 transition-colors"
+              className="w-full px-3 py-2 text-base sm:text-xs rounded-lg border border-slate-200 bg-white font-medium focus:border-slate-400 transition-colors"
             />
           </div>
 
@@ -171,14 +171,14 @@ export default function EmailEditor({ job, onRefresh, onProceed }: EmailEditorPr
         </div>
       </div>
 
-      <div className="flex items-center justify-between pt-2">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center sm:justify-between gap-3 pt-2">
         <p className="text-xs text-slate-500">
           Template updates invalidate any previous batch hash to guarantee authorization integrity.
         </p>
         <button
           onClick={handleSaveAndProceed}
           disabled={saving}
-          className="py-2.5 px-5 rounded-xl bg-slate-900 hover:bg-black text-white font-medium text-xs sm:text-sm flex items-center gap-1.5 transition-all duration-150 active:scale-95 cursor-pointer disabled:opacity-50"
+          className="w-full sm:w-auto justify-center py-2.5 px-5 rounded-xl bg-slate-900 hover:bg-black text-white font-medium text-xs sm:text-sm flex items-center gap-1.5 transition-all duration-150 active:scale-95 cursor-pointer disabled:opacity-50"
         >
           {saving ? <Loader2 className="w-4 h-4 animate-spin" /> : null}
           Save & Proceed to Approval Gate

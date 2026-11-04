@@ -16,7 +16,7 @@ import {
 
 export default function Home() {
   return (
-    <div className="space-y-16 sm:space-y-20">
+    <div className="space-y-10 sm:space-y-16">
       {/* 1. HERO SECTION WITH ACCURATE STAGGERED INTRO ANIMATIONS */}
       <section aria-label="Introduction" className="text-center pt-2 sm:pt-6 space-y-6 max-w-4xl mx-auto">
         {/* Intro 1: Status Pill */}
@@ -30,7 +30,7 @@ export default function Home() {
         </div>
 
         {/* Intro 2: Main Headline in Geist Sans */}
-        <h1 className="animate-intro-2 text-4xl sm:text-6xl font-bold tracking-tight text-slate-950 leading-[1.12]">
+        <h1 className="animate-intro-2 text-3xl sm:text-5xl md:text-6xl font-bold tracking-tight text-slate-950 leading-[1.15]">
           One Canva template.<br />
           One messy sheet.<br />
           <span className="text-blue-600">Zero mistakes.</span>
@@ -54,7 +54,7 @@ export default function Home() {
         </div>
 
         {/* Intro 5: Trust Strip */}
-        <div className="animate-intro-5 pt-8 border-t border-slate-200/80 grid grid-cols-2 sm:grid-cols-4 gap-4 text-xs font-medium text-slate-600">
+        <div className="animate-intro-5 pt-6 sm:pt-8 border-t border-slate-200/80 grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 text-[11px] sm:text-xs font-medium text-slate-600">
           <div className="flex items-center justify-center gap-1.5">
             <HardDrive className="w-4 h-4 text-blue-600 shrink-0" />
             <span>100% On-Device</span>
@@ -80,13 +80,13 @@ export default function Home() {
       </section>
 
       {/* 3. CALL TO ACTION BANNER (TRANSITION TO STUDIO) */}
-      <section aria-label="Launch Studio Call to Action" className="bg-gradient-to-b from-slate-950 to-slate-900 rounded-3xl p-8 sm:p-12 text-center text-white space-y-5 shadow-juicy">
+      <section aria-label="Launch Studio Call to Action" className="bg-gradient-to-b from-slate-950 to-slate-900 rounded-2xl sm:rounded-3xl p-6 sm:p-12 text-center text-white space-y-4 sm:space-y-5 shadow-juicy">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-500/10 border border-blue-400/20 text-xs font-medium text-blue-300">
           <Sparkles className="w-3.5 h-3.5 text-blue-400" />
           <span>Ready to Process Certificates?</span>
         </div>
 
-        <h2 className="text-2xl sm:text-4xl font-bold tracking-tight text-white max-w-xl mx-auto">
+        <h2 className="text-xl sm:text-3xl md:text-4xl font-bold tracking-tight text-white max-w-xl mx-auto">
           Start your certificate batch in the galeus studio.
         </h2>
 
@@ -97,7 +97,7 @@ export default function Home() {
         <div className="pt-2">
           <Link
             href="/studio"
-            className="inline-flex items-center gap-2 px-7 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium text-sm transition-all duration-150 active:scale-[0.98] shadow-tactile cursor-pointer"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-7 py-4 rounded-xl bg-blue-600 hover:bg-blue-500 text-white font-medium text-sm transition-all duration-150 active:scale-[0.98] shadow-tactile cursor-pointer"
           >
             <Layers className="w-4 h-4 shrink-0" />
             <span>Open Studio Workstation</span>

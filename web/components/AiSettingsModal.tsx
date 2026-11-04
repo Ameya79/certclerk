@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { createPortal } from "react-dom";
 import { LlmStatus } from "../lib/types";
 import { getLlmSettings, saveLlmSettings, testLlmSettings } from "../lib/api";
 import {
@@ -73,6 +74,7 @@ const PRESETS: Record<
 };
 
 export default function AiSettingsModal({ isOpen, onClose, onStatusChange }: AiSettingsModalProps) {
+  const [mounted, setMounted] = useState(false);
   const [activePreset, setActivePreset] = useState<ProviderPreset>("gemini");
   const [baseUrl, setBaseUrl] = useState(PRESETS.gemini.baseUrl);
   const [apiKey, setApiKey] = useState("");
@@ -94,6 +96,10 @@ export default function AiSettingsModal({ isOpen, onClose, onStatusChange }: AiS
   const [savedBanner, setSavedBanner] = useState(false);
 
   useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
     if (isOpen) {
       setTestResult(null);
       setSavedBanner(false);
@@ -113,7 +119,7 @@ export default function AiSettingsModal({ isOpen, onClose, onStatusChange }: AiS
     }
   }, [isOpen]);
 
-  if (!isOpen) return null;
+  if (!isOpen || !mounted) return null;
 
   const handleSelectPreset = (preset: ProviderPreset) => {
     setActivePreset(preset);
@@ -187,13 +193,13 @@ export default function AiSettingsModal({ isOpen, onClose, onStatusChange }: AiS
 
   const currentPresetInfo = PRESETS[activePreset];
 
-  return (
+  return createPortal(
     <div
-      className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/60 backdrop-blur-xs flex min-h-full items-center justify-center p-3 sm:p-4 animate-in fade-in duration-150"
+      className="fixed inset-0 z-50 overflow-y-auto bg-slate-950/70 backdrop-blur-sm flex min-h-full items-center justify-center p-3 sm:p-4"
       onClick={onClose}
     >
       <div
-        className="bg-white border border-slate-200 rounded-2xl max-w-lg w-full my-auto shadow-2xl relative flex flex-col max-h-[calc(100vh-2rem)] overflow-hidden"
+        className="bg-white border border-slate-200 rounded-2xl max-w-lg w-full my-auto shadow-2xl relative flex flex-col max-h-[calc(100vh-2rem)] overflow-hidden animate-fade-in-up"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header - Fixed & Pinned at Top */}
@@ -319,7 +325,7 @@ export default function AiSettingsModal({ isOpen, onClose, onStatusChange }: AiS
                     ? "Not needed for local Ollama"
                     : "Paste API key"
                 }
-                className="w-full pl-3 pr-8 py-2 text-xs rounded-lg border border-slate-300 bg-white font-mono focus:border-slate-500 transition-colors shadow-xs"
+                className="w-full pl-3 pr-8 py-2 text-base sm:text-xs rounded-lg border border-slate-300 bg-white font-mono focus:border-slate-500 transition-colors shadow-xs"
                 autoFocus
               />
               <button
@@ -359,7 +365,7 @@ export default function AiSettingsModal({ isOpen, onClose, onStatusChange }: AiS
                     value={baseUrl}
                     onChange={(e) => setBaseUrl(e.target.value)}
                     placeholder="https://..."
-                    className="w-full px-2.5 py-1.5 text-xs rounded-md border border-slate-200 bg-white font-mono focus:border-slate-400 transition-colors"
+                    className="w-full px-2.5 py-1.5 text-base sm:text-xs rounded-md border border-slate-200 bg-white font-mono focus:border-slate-400 transition-colors"
                   />
                 </div>
                 <div>
@@ -371,7 +377,7 @@ export default function AiSettingsModal({ isOpen, onClose, onStatusChange }: AiS
                     value={model}
                     onChange={(e) => setModel(e.target.value)}
                     placeholder="e.g. gemini-2.0-flash"
-                    className="w-full px-2.5 py-1.5 text-xs rounded-md border border-slate-200 bg-white font-mono focus:border-slate-400 transition-colors"
+                    className="w-full px-2.5 py-1.5 text-base sm:text-xs rounded-md border border-slate-200 bg-white font-mono focus:border-slate-400 transition-colors"
                   />
                 </div>
               </div>
@@ -460,6 +466,7 @@ export default function AiSettingsModal({ isOpen, onClose, onStatusChange }: AiS
           </div>
         </div>
       </div>
-    </div>
+    </div>,
+    document.body
   );
 }

@@ -115,51 +115,98 @@ export default function JobPage({ params }: { params: Promise<{ id: string }> })
   return (
     <div className="max-w-5xl mx-auto space-y-4">
       {/* Persistent Batch Context Header */}
-      <div className="bg-white border border-slate-200 rounded-xl px-4 py-2.5 flex items-center justify-between text-xs shadow-xs">
-        <div className="flex items-center gap-3">
-          <button
-            type="button"
-            onClick={() => router.push("/")}
-            className="text-slate-500 hover:text-slate-900 flex items-center gap-1 transition-colors cursor-pointer"
-            title="Return to Home"
-          >
-            <ChevronLeft className="w-4 h-4" />
-            <span className="font-medium">All Jobs</span>
-          </button>
-          
-          <div className="h-3.5 w-px bg-slate-200"></div>
+      <div className="bg-white border border-slate-200 rounded-xl p-3 sm:px-4 sm:py-2.5 text-xs shadow-xs">
+        {/* Mobile View */}
+        <div className="flex sm:hidden flex-col gap-2">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => router.push("/")}
+                className="text-slate-500 hover:text-slate-900 flex items-center gap-0.5 transition-colors cursor-pointer"
+                title="Return to Home"
+              >
+                <ChevronLeft className="w-4 h-4" />
+                <span className="font-medium text-xs">Back</span>
+              </button>
+              <span className="font-semibold text-slate-800 font-mono text-[11px]">
+                Batch #{jobId.slice(0, 8)}
+              </span>
+            </div>
 
-          <div className="flex items-center gap-2">
-            <span className="font-semibold text-slate-800 font-mono text-[11px]">
-              Batch #{jobId.slice(0, 8)}
-            </span>
-            <span className="text-slate-400">•</span>
-            <span className="text-slate-600">
-              {recipientCount} attendee{recipientCount === 1 ? "" : "s"}
-            </span>
-            <span className="text-slate-400">•</span>
-            <span className="text-[11px] font-mono text-slate-500">
-              Tag: [{job.placeholder}]
-            </span>
+            <div className="flex items-center gap-1.5">
+              {job.status === "generated" && (
+                <span className="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-medium flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Previews Ready
+                </span>
+              )}
+              {job.status === "approved" && (
+                <span className="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-medium flex items-center gap-1">
+                  <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Locked
+                </span>
+              )}
+              {job.status === "done" && (
+                <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[10px] font-medium">
+                  Completed
+                </span>
+              )}
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2 text-[11px] text-slate-500 pl-4 border-t border-slate-100 pt-1.5">
+            <span>{recipientCount} attendee{recipientCount === 1 ? "" : "s"}</span>
+            <span>•</span>
+            <span className="font-mono">Tag: [{job.placeholder}]</span>
           </div>
         </div>
 
-        <div className="flex items-center gap-2">
-          {job.status === "generated" && (
-            <span className="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-medium flex items-center gap-1">
-              <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Previews Ready
-            </span>
-          )}
-          {job.status === "approved" && (
-            <span className="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-medium flex items-center gap-1">
-              <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Batch Locked
-            </span>
-          )}
-          {job.status === "done" && (
-            <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[10px] font-medium">
-              Completed
-            </span>
-          )}
+        {/* Desktop View */}
+        <div className="hidden sm:flex items-center justify-between">
+          <div className="flex items-center gap-3">
+            <button
+              type="button"
+              onClick={() => router.push("/")}
+              className="text-slate-500 hover:text-slate-900 flex items-center gap-1 transition-colors cursor-pointer"
+              title="Return to Home"
+            >
+              <ChevronLeft className="w-4 h-4" />
+              <span className="font-medium">All Jobs</span>
+            </button>
+            
+            <div className="h-3.5 w-px bg-slate-200"></div>
+
+            <div className="flex items-center gap-2">
+              <span className="font-semibold text-slate-800 font-mono text-[11px]">
+                Batch #{jobId.slice(0, 8)}
+              </span>
+              <span className="text-slate-400">•</span>
+              <span className="text-slate-600">
+                {recipientCount} attendee{recipientCount === 1 ? "" : "s"}
+              </span>
+              <span className="text-slate-400">•</span>
+              <span className="text-[11px] font-mono text-slate-500">
+                Tag: [{job.placeholder}]
+              </span>
+            </div>
+          </div>
+
+          <div className="flex items-center gap-2">
+            {job.status === "generated" && (
+              <span className="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-medium flex items-center gap-1">
+                <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Previews Ready
+              </span>
+            )}
+            {job.status === "approved" && (
+              <span className="px-2 py-0.5 rounded-md bg-emerald-50 text-emerald-800 border border-emerald-200 text-[10px] font-medium flex items-center gap-1">
+                <CheckCircle2 className="w-3 h-3 text-emerald-600" /> Batch Locked
+              </span>
+            )}
+            {job.status === "done" && (
+              <span className="px-2 py-0.5 rounded-md bg-slate-100 text-slate-700 text-[10px] font-medium">
+                Completed
+              </span>
+            )}
+          </div>
         </div>
       </div>
 

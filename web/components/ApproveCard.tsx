@@ -40,7 +40,7 @@ export default function ApproveCard({ job, onRefresh, onProceed }: ApproveCardPr
       {/* 2-Column Balanced Verification Studio (Stable Height & Width) */}
       <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
         {/* Left Column: Cryptographic Checklist (7 cols) */}
-        <div className="md:col-span-7 bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between shadow-sm">
+        <div className="md:col-span-7 bg-white border border-slate-200 rounded-xl p-4 sm:p-6 flex flex-col justify-between shadow-sm">
           <div>
             <div className="flex items-center gap-2.5 mb-3">
               <div className="w-8 h-8 rounded-lg bg-slate-100 flex items-center justify-center text-slate-800">
@@ -107,7 +107,7 @@ export default function ApproveCard({ job, onRefresh, onProceed }: ApproveCardPr
         </div>
 
         {/* Right Column: Dispatch Scope & Confirmation (5 cols) */}
-        <div className="md:col-span-5 bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between shadow-sm">
+        <div className="md:col-span-5 bg-white border border-slate-200 rounded-xl p-4 sm:p-6 flex flex-col justify-between shadow-sm">
           <div>
             <div className="flex items-center justify-between mb-3">
               <h4 className="font-bold text-sm text-slate-900">Delivery Scope</h4>

@@ -21,9 +21,55 @@ const STEPS = [
 ] as const;
 
 export default function Stepper({ currentStep, onStepClick }: StepperProps) {
+  const activeStep = STEPS[currentStep - 1] || STEPS[0];
+  const ActiveIcon = activeStep.icon;
+
   return (
     <div className="w-full bg-white border border-slate-200 rounded-xl p-3 sm:p-3.5 shadow-xs">
-      <div className="flex items-center justify-between relative overflow-x-auto pb-1 sm:pb-0 scrollbar-none">
+      {/* Mobile Segmented Progress View */}
+      <div className="block sm:hidden space-y-2.5">
+        <div className="flex items-center justify-between">
+          <div className="flex items-center gap-2">
+            <div className="w-6 h-6 rounded-md bg-slate-900 text-white flex items-center justify-center font-bold text-xs">
+              {currentStep}
+            </div>
+            <span className="text-xs font-bold text-slate-900">
+              {activeStep.label}
+            </span>
+          </div>
+          <span className="text-[10px] font-mono font-medium text-slate-500 bg-slate-100 px-2 py-0.5 rounded">
+            Step {currentStep} of {STEPS.length}
+          </span>
+        </div>
+
+        {/* 7 Segmented Track Bars */}
+        <div className="flex items-center gap-1">
+          {STEPS.map((step) => {
+            const isDone = currentStep > step.num;
+            const isCurrent = currentStep === step.num;
+
+            return (
+              <button
+                key={step.num}
+                type="button"
+                onClick={() => isDone && onStepClick?.(step.num as StepNumber)}
+                disabled={!isDone}
+                title={step.label}
+                className={`flex-1 h-2 rounded-full transition-all duration-150 ${
+                  isDone
+                    ? "bg-emerald-500 hover:bg-emerald-600 cursor-pointer active:scale-95"
+                    : isCurrent
+                    ? "bg-slate-900"
+                    : "bg-slate-200 cursor-default"
+                }`}
+              />
+            );
+          })}
+        </div>
+      </div>
+
+      {/* Desktop Full Stepper View */}
+      <div className="hidden sm:flex items-center justify-between relative">
         {STEPS.map((step, idx) => {
           const Icon = step.icon;
           const isDone = currentStep > step.num;

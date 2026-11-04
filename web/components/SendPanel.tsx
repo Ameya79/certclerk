@@ -110,7 +110,7 @@ export default function SendPanel({ job, onRefresh, onProceed }: SendPanelProps)
                   disabled={isSending || isDone}
                   onChange={(e) => setHost(e.target.value)}
                   placeholder="smtp.gmail.com"
-                  className="w-full px-2.5 py-1.5 text-xs rounded-lg border border-slate-200 bg-white focus:border-slate-400 transition-colors font-mono disabled:bg-slate-50"
+                  className="w-full px-2.5 py-1.5 text-base sm:text-xs rounded-lg border border-slate-200 bg-white focus:border-slate-400 transition-colors font-mono disabled:bg-slate-50"
                 />
               </div>
               <div>
@@ -123,7 +123,7 @@ export default function SendPanel({ job, onRefresh, onProceed }: SendPanelProps)
                   disabled={isSending || isDone}
                   onChange={(e) => setPort(Number(e.target.value))}
                   placeholder="587"
-                  className="w-full px-2.5 py-1.5 text-xs rounded-lg border border-slate-200 bg-white focus:border-slate-400 transition-colors font-mono disabled:bg-slate-50"
+                  className="w-full px-2.5 py-1.5 text-base sm:text-xs rounded-lg border border-slate-200 bg-white focus:border-slate-400 transition-colors font-mono disabled:bg-slate-50"
                 />
               </div>
             </div>
@@ -142,7 +142,7 @@ export default function SendPanel({ job, onRefresh, onProceed }: SendPanelProps)
                     if (!sender) setSender(e.target.value);
                   }}
                   placeholder="your.email@gmail.com"
-                  className="w-full px-2.5 py-1.5 text-xs rounded-lg border border-slate-200 bg-white focus:border-slate-400 transition-colors font-mono disabled:bg-slate-50"
+                  className="w-full px-2.5 py-1.5 text-base sm:text-xs rounded-lg border border-slate-200 bg-white focus:border-slate-400 transition-colors font-mono disabled:bg-slate-50"
                 />
               </div>
               <div>
@@ -155,7 +155,7 @@ export default function SendPanel({ job, onRefresh, onProceed }: SendPanelProps)
                   disabled={isSending || isDone}
                   onChange={(e) => setPassword(e.target.value)}
                   placeholder="16-character app password"
-                  className="w-full px-2.5 py-1.5 text-xs rounded-lg border border-slate-200 bg-white focus:border-slate-400 transition-colors font-mono disabled:bg-slate-50"
+                  className="w-full px-2.5 py-1.5 text-base sm:text-xs rounded-lg border border-slate-200 bg-white focus:border-slate-400 transition-colors font-mono disabled:bg-slate-50"
                 />
               </div>
             </div>
@@ -170,7 +170,7 @@ export default function SendPanel({ job, onRefresh, onProceed }: SendPanelProps)
                 disabled={isSending || isDone}
                 onChange={(e) => setSender(e.target.value)}
                 placeholder="club@gmail.com"
-                className="w-full px-2.5 py-1.5 text-xs rounded-lg border border-slate-200 bg-white focus:border-slate-400 transition-colors font-mono disabled:bg-slate-50"
+                className="w-full px-2.5 py-1.5 text-base sm:text-xs rounded-lg border border-slate-200 bg-white focus:border-slate-400 transition-colors font-mono disabled:bg-slate-50"
               />
             </div>
 

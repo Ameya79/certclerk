@@ -71,3 +71,11 @@ Every interface must be engineered like precision desktop software (Linear, Rayc
   1. Official branding banner at the top (`assets/galeus-hero-banner.png`).
   2. High-res animated walkthrough preview (`assets/galeus-walkthrough.gif` <= 10MB) linking to GitHub's native video player (`https://github.com/<owner>/<repo>/blob/main/assets/video.mp4`).
   3. Prominent CTA buttons right below the preview for HD Video in GitHub player, live interactive web demo, and direct MP4 download.
+
+## 13. Mobile-First Viewport & Touch Ergonomics Standard
+- **React Portal Overlay Mandate**: Modals, popups, and full-screen overlays must be mounted directly to `document.body` via `createPortal(..., document.body)`. Mounting modals inside components located within sticky headers or elements with CSS `backdrop-filter` or `transform` causes the browser to create a new containing block and stacking context, trapping the modal inside the header's bounds and breaking fixed positioning.
+- **iOS Safari Auto-Zoom Prevention**: Every interactive form control (`<input>`, `<select>`, `<textarea>`) must use `text-base sm:text-xs` or `text-[16px] sm:text-xs`. Font sizes below 16px on mobile viewports cause iOS Safari to aggressively zoom into the field on focus, breaking responsive layouts.
+- **Minimum Touch Targets**: All interactive buttons, action chips, and dropdown triggers must maintain a minimum touch hit target of 44×44px with tactile `active:scale-[0.98]` micro-interactions.
+- **Adaptive Mobile Card Views**: Data tables with > 3 columns must provide a dedicated card layout on mobile viewports (`block md:hidden`) and show the full tabular layout only on desktop (`hidden md:block`).
+- **Segmented Mobile Steppers**: Multi-step wizards with > 4 steps must render a compact segmented progress indicator (`Step X of Y: Step Name`) on mobile rather than an overflow horizontal bar.
+- **Mobile Stacked Action Footers**: Wizard and modal action bars must stack vertically on mobile (`flex-col sm:flex-row gap-3 items-stretch sm:items-center sm:justify-between`) with full-width primary CTA buttons (`w-full sm:w-auto`).

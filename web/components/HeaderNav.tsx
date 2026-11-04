@@ -56,8 +56,11 @@ export default function HeaderNav() {
               isConfigured ? "text-blue-600" : "text-slate-400"
             }`}
           />
-          <span className="font-medium">
+          <span className="font-medium hidden sm:inline">
             {isConfigured ? (llmStatus?.provider || "AI Engine") : "Rules Engine"}
+          </span>
+          <span className="font-medium sm:hidden">
+            {isConfigured ? "AI" : "AI Keys"}
           </span>
           <span
             className={`text-[10px] font-mono px-1.5 py-0.5 rounded border ${
@@ -82,19 +85,21 @@ export default function HeaderNav() {
         {isStudioPage ? (
           <Link
             href="/"
-            className="px-3.5 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 text-xs font-medium flex items-center gap-1.5 transition-all duration-150 active:scale-[0.98] shadow-flat shrink-0"
+            className="px-3 sm:px-3.5 py-1.5 rounded-lg bg-white hover:bg-slate-50 text-slate-800 border border-slate-200 text-xs font-medium flex items-center gap-1.5 transition-all duration-150 active:scale-[0.98] shadow-flat shrink-0"
           >
             <BookOpen className="w-3.5 h-3.5 text-slate-600 shrink-0" />
-            <span>Overview</span>
+            <span className="hidden sm:inline">Overview</span>
+            <span className="sm:hidden">Home</span>
           </Link>
         ) : (
           <Link
             href="/studio"
-            className="px-3.5 py-1.5 rounded-lg bg-slate-950 hover:bg-blue-600 text-white text-xs font-medium flex items-center gap-1.5 transition-all duration-150 active:scale-[0.98] shadow-tactile shrink-0"
+            className="px-3 sm:px-3.5 py-1.5 rounded-lg bg-slate-950 hover:bg-blue-600 text-white text-xs font-medium flex items-center gap-1.5 transition-all duration-150 active:scale-[0.98] shadow-tactile shrink-0"
           >
             <Layers className="w-3.5 h-3.5 shrink-0" />
-            <span>Open Studio</span>
-            <ArrowRight className="w-3.5 h-3.5 shrink-0" />
+            <span className="hidden sm:inline">Open Studio</span>
+            <span className="sm:hidden">Studio</span>
+            <ArrowRight className="w-3.5 h-3.5 shrink-0 hidden sm:inline" />
           </Link>
         )}
       </nav>

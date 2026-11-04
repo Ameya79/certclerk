@@ -66,7 +66,7 @@ export default function Report({ job, onRestart }: ReportProps) {
         </p>
 
         {/* Counts summary */}
-        <div className="grid grid-cols-4 gap-2.5 max-w-lg mx-auto p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-left mb-5">
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-2.5 max-w-lg mx-auto p-3.5 rounded-xl bg-slate-50 border border-slate-200 text-left mb-5">
           <div>
             <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">Sent</span>
             <span className="text-lg font-bold text-emerald-700">{sentCount}</span>
@@ -86,17 +86,17 @@ export default function Report({ job, onRestart }: ReportProps) {
         </div>
 
         {/* Action Buttons */}
-        <div className="flex flex-wrap items-center justify-center gap-2.5">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-center gap-2.5">
           <a
             href={`/api/jobs/${job.job_id}/download.zip`}
-            className="px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white font-medium text-xs flex items-center gap-2 transition-all duration-150 active:scale-95 cursor-pointer"
+            className="w-full sm:w-auto justify-center px-5 py-2.5 rounded-xl bg-slate-900 hover:bg-black text-white font-medium text-xs flex items-center gap-2 transition-all duration-150 active:scale-95 cursor-pointer"
           >
             <Download className="w-4 h-4" /> Download All Certificates (.ZIP)
           </a>
 
           <button
             onClick={() => setShowAudit(!showAudit)}
-            className="px-4 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 font-medium text-xs text-slate-700 flex items-center gap-1.5 transition-all duration-150 active:scale-95 cursor-pointer"
+            className="w-full sm:w-auto justify-center px-4 py-2.5 rounded-xl border border-slate-200 bg-white hover:bg-slate-50 font-medium text-xs text-slate-700 flex items-center gap-1.5 transition-all duration-150 active:scale-95 cursor-pointer"
           >
             <FileText className="w-4 h-4 text-slate-400" />
             Audit Log ({auditEntries.length})

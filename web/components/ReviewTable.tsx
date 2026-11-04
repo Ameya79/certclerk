@@ -77,8 +77,8 @@ export default function ReviewTable({ job, onRefresh, onProceed }: ReviewTablePr
   return (
     <div className="space-y-5">
       {/* Column Mapping Header */}
-      <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5 flex flex-wrap items-center justify-between gap-4 shadow-sm">
-        <div className="flex items-center gap-4">
+      <div className="bg-white border border-slate-200 rounded-xl p-4 sm:p-5 flex flex-col md:flex-row md:items-center justify-between gap-3 sm:gap-4 shadow-sm">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 w-full md:w-auto">
           <div>
             <label className="block text-[11px] font-semibold text-slate-500 uppercase tracking-wider mb-1">
               Name Column
@@ -89,7 +89,7 @@ export default function ReviewTable({ job, onRefresh, onProceed }: ReviewTablePr
                 await updateMapping(job.job_id, { name: e.target.value, email: job.email_column });
                 onRefresh();
               }}
-              className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-medium text-slate-800 hover:border-slate-300 focus:border-slate-400 transition-colors"
+              className="w-full sm:w-auto px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-base sm:text-xs font-medium text-slate-800 hover:border-slate-300 focus:border-slate-400 transition-colors"
             >
               {job.headers.map((h) => (
                 <option key={h} value={h}>
@@ -109,7 +109,7 @@ export default function ReviewTable({ job, onRefresh, onProceed }: ReviewTablePr
                 await updateMapping(job.job_id, { name: job.name_column || job.headers[0], email: e.target.value || null });
                 onRefresh();
               }}
-              className="px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-xs font-medium text-slate-800 hover:border-slate-300 focus:border-slate-400 transition-colors"
+              className="w-full sm:w-auto px-3 py-1.5 rounded-lg border border-slate-200 bg-white text-base sm:text-xs font-medium text-slate-800 hover:border-slate-300 focus:border-slate-400 transition-colors"
             >
               <option value="">(None - generate only)</option>
               {job.headers.map((h) => (
@@ -159,9 +159,143 @@ export default function ReviewTable({ job, onRefresh, onProceed }: ReviewTablePr
         </div>
       </div>
 
-      {/* Table */}
+      {/* Mobile Card View + Desktop Table */}
       <div className="bg-white border border-slate-200 rounded-xl overflow-hidden shadow-sm">
-        <div className="overflow-x-auto">
+        {/* Mobile Cards (Visible on mobile screens) */}
+        <div className="block md:hidden divide-y divide-slate-100">
+          {currentRows.map((r) => {
+            const isEditing = editingRow === r.row_id;
+            const isSkipped = r.status === "skipped";
+
+            return (
+              <div
+                key={r.row_id}
+                className={`p-4 space-y-2.5 transition-colors ${
+                  isSkipped ? "opacity-50 bg-slate-50/50" : "bg-white"
+                }`}
+              >
+                {/* Row Header & Actions */}
+                <div className="flex items-center justify-between gap-2">
+                  <div className="flex items-center gap-1.5 flex-wrap">
+                    <span className="font-mono text-xs font-semibold text-slate-500">#{r.row_id}</span>
+                    {r.name_changed && (
+                      <span className="text-[10px] bg-slate-100 text-slate-700 font-medium px-1.5 py-0.5 rounded border border-slate-200">
+                        Fixed
+                      </span>
+                    )}
+                    {r.flags.map((flag) => (
+                      <span
+                        key={flag}
+                        className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-amber-50 text-amber-800 border border-amber-200"
+                      >
+                        {flag}
+                      </span>
+                    ))}
+                    {r.email_status === "invalid" && (
+                      <span className="text-[10px] font-medium px-1.5 py-0.5 rounded bg-red-50 text-red-800 border border-red-200">
+                        invalid email
+                      </span>
+                    )}
+                  </div>
+
+                  <div className="flex items-center gap-1.5 shrink-0">
+                    {isEditing ? (
+                      <>
+                        <button
+                          type="button"
+                          onClick={() => saveEdit(r.row_id)}
+                          className="p-1.5 rounded-lg bg-emerald-50 text-emerald-700 hover:bg-emerald-100 cursor-pointer"
+                          title="Save changes"
+                        >
+                          <Check className="w-4 h-4" />
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => setEditingRow(null)}
+                          className="p-1.5 rounded-lg text-slate-400 hover:bg-slate-100 cursor-pointer"
+                          title="Cancel"
+                        >
+                          <X className="w-4 h-4" />
+                        </button>
+                      </>
+                    ) : (
+                      <>
+                        <button
+                          type="button"
+                          onClick={() => startEdit(r)}
+                          className="text-xs text-slate-600 hover:text-slate-900 px-2 py-1 rounded hover:bg-slate-50 border border-slate-200 flex items-center gap-1 cursor-pointer"
+                        >
+                          <Edit2 className="w-3 h-3" /> Edit
+                        </button>
+                        <button
+                          type="button"
+                          onClick={() => toggleSkip(r)}
+                          className={`text-xs px-2 py-1 rounded border transition-colors cursor-pointer ${
+                            isSkipped
+                              ? "bg-emerald-50 text-emerald-800 border-emerald-200"
+                              : "text-slate-600 hover:text-slate-900 border-slate-200 bg-white"
+                          }`}
+                        >
+                          {isSkipped ? "Unskip" : "Skip"}
+                        </button>
+                      </>
+                    )}
+                  </div>
+                </div>
+
+                {/* Name row */}
+                <div>
+                  <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">Standardized Name</span>
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      value={editName}
+                      onChange={(e) => setEditName(e.target.value)}
+                      className="mt-1 px-3 py-1.5 text-base sm:text-xs rounded-lg border border-slate-300 bg-white w-full focus:border-slate-500 font-medium"
+                      autoFocus
+                    />
+                  ) : (
+                    <div className="flex items-baseline gap-2 mt-0.5">
+                      <span className="text-sm font-semibold text-slate-900">{r.clean_name}</span>
+                      <span className="text-xs font-mono text-slate-400">({r.raw_name})</span>
+                    </div>
+                  )}
+                </div>
+
+                {/* Email row */}
+                <div>
+                  <span className="text-[10px] font-semibold text-slate-400 uppercase tracking-wider block">Email</span>
+                  {isEditing ? (
+                    <input
+                      type="text"
+                      value={editEmail}
+                      onChange={(e) => setEditEmail(e.target.value)}
+                      className="mt-1 px-3 py-1.5 text-base sm:text-xs rounded-lg border border-slate-300 bg-white w-full focus:border-slate-500 font-mono"
+                    />
+                  ) : (
+                    <div className="mt-0.5">
+                      <span className="text-xs font-mono text-slate-700">
+                        {r.email || <span className="text-slate-400 italic">None</span>}
+                      </span>
+                      {r.email_status === "fixable" && r.email_suggestion && (
+                        <button
+                          type="button"
+                          onClick={() => applyEmailSuggestion(r)}
+                          className="mt-1 text-xs text-amber-700 hover:text-amber-800 underline block cursor-pointer font-medium"
+                        >
+                          Fix typo to: {r.email_suggestion}
+                        </button>
+                      )}
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Desktop Table (Hidden on mobile) */}
+        <div className="hidden md:block overflow-x-auto">
           <table className="w-full text-left border-collapse">
             <thead>
               <tr className="bg-slate-50 border-b border-slate-200 text-[11px] font-semibold text-slate-500 uppercase tracking-wider">
@@ -329,13 +463,13 @@ export default function ReviewTable({ job, onRefresh, onProceed }: ReviewTablePr
       </div>
 
       {/* Action Footer */}
-      <div className="flex items-center justify-between pt-2">
+      <div className="flex flex-col sm:flex-row items-stretch sm:items-center sm:justify-between gap-3 pt-2">
         <p className="text-xs text-slate-500">
           All flagged rows can be edited inline or skipped. When ready, generate the certificate layout.
         </p>
         <button
           onClick={onProceed}
-          className="py-2.5 px-5 rounded-xl bg-slate-900 hover:bg-black text-white font-medium text-xs sm:text-sm flex items-center gap-1.5 transition-all duration-150 active:scale-95 cursor-pointer"
+          className="w-full sm:w-auto justify-center py-2.5 px-5 rounded-xl bg-slate-900 hover:bg-black text-white font-medium text-xs sm:text-sm flex items-center gap-1.5 transition-all duration-150 active:scale-95 cursor-pointer"
         >
           Generate Certificate Previews
           <ArrowRight className="w-4 h-4" />

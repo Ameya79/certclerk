@@ -147,7 +147,7 @@ export default function UploadForm({ onSuccess }: UploadFormProps) {
                   <Upload className="w-5 h-5" />
                 </div>
                 <span className="text-xs font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">
-                  Choose or drag Canva template PDF
+                  Tap or choose Canva template PDF
                 </span>
                 <span className="text-[11px] text-slate-500 mt-0.5">
                   Single-page document with placeholder word
@@ -235,7 +235,7 @@ export default function UploadForm({ onSuccess }: UploadFormProps) {
                   <Upload className="w-5 h-5" />
                 </div>
                 <span className="text-xs font-semibold text-slate-900 group-hover:text-blue-600 transition-colors">
-                  Choose or drag attendee sheet
+                  Tap or choose attendee sheet
                 </span>
                 <span className="text-[11px] text-slate-500 mt-0.5">
                   CSV or Excel with recipient names &amp; emails
@@ -313,7 +313,7 @@ export default function UploadForm({ onSuccess }: UploadFormProps) {
               value={placeholder}
               onChange={(e) => setPlaceholder(e.target.value)}
               placeholder="AGENT"
-              className="w-full px-3.5 py-2 rounded-lg border border-slate-200 bg-slate-50/50 font-mono text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors shadow-flat"
+              className="w-full px-3.5 py-2 rounded-lg border border-slate-200 bg-slate-50/50 font-mono text-base sm:text-xs text-slate-900 placeholder-slate-400 focus:bg-white focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition-colors shadow-flat"
             />
             <p className="font-mono text-[10px] text-slate-500 mt-1">
               Case-sensitive token scanned in Canva PDF. Default: <code>AGENT</code>.
