@@ -49,3 +49,16 @@ Every interface must be engineered like precision desktop software (Linear, Rayc
   4. Landing page copy, feature cards, and footers.
   5. Package manifest (`package.json`) and API metadata (`FastAPI(title="galeus API")`).
   6. Documentation (`README.md`, `DEPLOYMENT.md`).
+
+## 10. Local-First Infrastructure & Demo Positioning Standard
+- **Primary Architecture**: Present the tool primarily as a 100% on-device, self-hosted, private local infrastructure (`docker compose up --build` or local Python).
+- **Secondary Cloud Links**: Host and document live deployments (e.g. Vercel) as secondary "Try the Demo" preview environments.
+- **Privacy & Security**: Emphasize zero telemetry, ephemeral `/tmp` storage, and in-memory SMTP credential handling.
+
+## 11. Header Status Chip & Modal Viewport Hygiene
+- **No Mashed Labels**: Do not combine two disparate concepts with pipes inside a single button (e.g. avoid `Rules Engine | Config`). Use clean, recognizable badge icons with clear status indicators.
+- **Accurate Model Identifiers**: Always use verified, active model strings (e.g. `gemini-2.0-flash` or `gemini-1.5-flash`, never unreleased version numbers).
+- **Modal Viewport Hygiene**: Modals must be centered with `fixed inset-0 z-50 flex items-center justify-center p-4 bg-slate-950/40 backdrop-blur-sm`, with z-index above all navigation headers.
+
+## 12. Repository Media & Native Video Invariant
+- High-craft READMEs must embed official branding banners at the top (`assets/galeus-hero-banner.png`) and include actual `.mp4` video walkthroughs natively using HTML5 `<video controls width="100%">` tags rather than plain text descriptions.

@@ -40,7 +40,7 @@ const PRESETS: Record<
     name: "Google Gemini (Free)",
     badge: "Recommended",
     baseUrl: "https://generativelanguage.googleapis.com/v1beta/openai/",
-    defaultModel: "gemini-3.6-flash",
+    defaultModel: "gemini-2.0-flash",
     keyLink: "https://aistudio.google.com/app/apikey",
     keyLinkLabel: "Get Free Gemini API Key at Google AI Studio",
     description: "100% free tier. 1,500 requests/day, 15 RPM. No credit card required.",
@@ -286,7 +286,7 @@ export default function AiSettingsModal({ isOpen, onClose, onStatusChange }: AiS
                 )}
               </div>
               <span className="text-[10px] text-slate-500 font-mono flex items-center gap-1">
-                Model: <strong>{model || "gemini-3.6-flash"}</strong>
+                Model: <strong>{model || "gemini-2.0-flash"}</strong>
                 {model !== currentPresetInfo.defaultModel && (
                   <button
                     type="button"

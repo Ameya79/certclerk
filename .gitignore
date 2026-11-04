@@ -42,3 +42,6 @@ htmlcov/
 .mypy_cache/
 .ruff_cache/
 
+# Agent local skills
+.agents/
+

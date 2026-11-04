@@ -14,3 +14,4 @@ Turn Canva certificate templates + messy attendee rosters into personalized, mat
 - **GitHub Repository**: [https://github.com/Ameya79/galeus](https://github.com/Ameya79/galeus)
 - **Mathematical Invariant**: `norm(raw) == norm(clean)`
 - **Auto-Fit Typography**: PyMuPDF sub-pixel bounding box auto-shrink
+

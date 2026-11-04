@@ -40,13 +40,13 @@ export default function HeaderNav() {
           </Link>
         </div>
 
-        {/* AI Provider Status Button */}
+        {/* AI Engine Status Chip */}
         <button
           type="button"
           onClick={() => setIsModalOpen(true)}
-          className={`px-3 py-1.5 rounded-lg text-xs font-medium flex items-center gap-1.5 border transition-all duration-150 active:scale-[0.98] cursor-pointer shadow-flat ${
+          className={`px-3 py-1.5 rounded-xl text-xs font-medium flex items-center gap-2 border transition-all duration-150 active:scale-[0.98] cursor-pointer shadow-flat ${
             isConfigured
-              ? "bg-blue-50 text-blue-800 border-blue-200 hover:bg-blue-100/70"
+              ? "bg-blue-50 text-blue-900 border-blue-200 hover:bg-blue-100/80"
               : "bg-white text-slate-700 border-slate-200 hover:bg-slate-50 hover:border-slate-300"
           }`}
           title="Click to configure AI keys (Gemini / Groq / Ollama / Rules)"
@@ -56,22 +56,26 @@ export default function HeaderNav() {
               isConfigured ? "text-blue-600" : "text-slate-400"
             }`}
           />
-          <span className="truncate max-w-[110px] sm:max-w-none">
-            {isConfigured ? (
-              <span className="font-semibold">{llmStatus?.provider || "AI Ready"}</span>
-            ) : (
-              <span>Rules Engine</span>
-            )}
+          <span className="font-medium">
+            {isConfigured ? (llmStatus?.provider || "AI Engine") : "Rules Engine"}
           </span>
-          <span className="text-[10px] text-slate-400 font-mono border-l border-slate-200 pl-1.5 ml-0.5">
-            Config
+          <span
+            className={`text-[10px] font-mono px-1.5 py-0.5 rounded border ${
+              isConfigured
+                ? "bg-blue-100/80 text-blue-700 border-blue-200"
+                : "bg-slate-100 text-slate-500 border-slate-200"
+            }`}
+          >
+            {isConfigured ? "ACTIVE" : "CONFIG"}
           </span>
         </button>
 
-        {/* Local Device Indicator */}
-        <div className="hidden lg:flex items-center gap-1.5 text-xs text-slate-600 px-2.5 py-1.5 rounded-lg bg-slate-50 border border-slate-200/80">
-          <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse shrink-0" />
-          <span className="font-medium text-slate-700">Local Device</span>
+        {/* 100% On-Device Badge */}
+        <div className="hidden sm:flex items-center gap-1.5 text-xs px-2.5 py-1.5 rounded-xl bg-emerald-50/70 border border-emerald-200/80 text-emerald-900 shadow-flat">
+          <span className="w-1.5 h-1.5 rounded-full bg-emerald-600 animate-pulse shrink-0" />
+          <span className="font-mono text-[11px] font-semibold tracking-tight text-emerald-800">
+            100% ON-DEVICE
+          </span>
         </div>
 
         {/* Page Switcher CTA Button */}
