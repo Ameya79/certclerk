@@ -215,3 +215,4 @@ export default function HowToUseModal({ isOpen, onClose }: HowToUseModalProps) {
     document.body
   );
 }
+

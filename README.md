@@ -8,10 +8,16 @@
 
 <p align="center">
   <a href="https://galeus.vercel.app/"><img src="https://img.shields.io/badge/Live%20Demo-galeus.vercel.app-2563eb?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" /></a>
-  <a href="https://benchtoplabs.vercel.app"><img src="https://img.shields.io/badge/benchtop%20labs-verified-FF6B14?style=for-the-badge&logoColor=white" alt="Benchtop Labs Verified" /></a>
+  <a href="https://benchtoplabs.vercel.app/p/galeus"><img src="https://benchtoplabs.vercel.app/api/badge/galeus?style=featured" alt="Featured on Benchtop Labs" /></a>
   <img src="https://img.shields.io/badge/Architecture-100%25%20On--Device-059669?style=for-the-badge&logo=docker&logoColor=white" alt="100% On-Device" />
   <img src="https://img.shields.io/badge/Guard-Zero%20Typo%20Guarantee-blue?style=for-the-badge" alt="Zero Typo Guarantee" />
   <img src="https://img.shields.io/badge/License-MIT-slate?style=for-the-badge" alt="MIT License" />
+</p>
+
+<p align="center">
+  <a href="https://benchtoplabs.vercel.app/p/galeus">
+    <img src="https://benchtoplabs.vercel.app/api/badge/galeus?style=card" alt="Benchtop Labs Verified Spec" />
+  </a>
 </p>
 
 ---
@@ -145,7 +151,7 @@ Want to host your own cloud instance?
 
 - **GitHub**: [@Ameya79](https://github.com/Ameya79)
 - **LinkedIn**: [in/ameya-kulkarni-a31b74246](https://www.linkedin.com/in/ameya-kulkarni-a31b74246/)
-- **Registry**: Verified on [Benchtop Labs](https://benchtoplabs.vercel.app)
+- **Registry**: Verified on [Benchtop Labs](https://benchtoplabs.vercel.app/p/galeus) ([`Ameya79/benchtoplabs-registry`](https://github.com/Ameya79/benchtoplabs-registry))
 
 ---
 

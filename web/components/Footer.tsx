@@ -53,7 +53,7 @@ export default function Footer() {
             </a>
             <span className="text-slate-300">•</span>
             <a
-              href="https://benchtoplabs.vercel.app"
+              href="https://benchtoplabs.vercel.app/p/galeus"
               target="_blank"
               rel="noopener noreferrer"
               className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-orange-50/80 text-orange-800 border border-orange-200/90 hover:bg-orange-100 transition-colors text-[11px] font-semibold tracking-tight shadow-flat"
@@ -98,3 +98,4 @@ export default function Footer() {
     </footer>
   );
 }
+
