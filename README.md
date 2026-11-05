@@ -14,12 +14,6 @@
   <img src="https://img.shields.io/badge/License-MIT-slate?style=for-the-badge" alt="MIT License" />
 </p>
 
-<p align="center">
-  <a href="https://benchtoplabs.vercel.app/p/galeus">
-    <img src="https://benchtoplabs.vercel.app/api/badge/galeus?style=card" alt="Benchtop Labs Verified Spec" />
-  </a>
-</p>
-
 ---
 
 ## ⚡ Try the Live Demo
@@ -29,20 +23,6 @@ Experience the full interactive workstation right in your browser:
 👉 **[https://galeus.vercel.app/](https://galeus.vercel.app/)**
 
 *(Upload your Canva PDF certificate template, import an attendee list, preview sub-pixel auto-fit rendering, and test the zero-typo guard in real time).*
-
----
-
-## 🎥 Walkthrough Video
-
-<p align="center">
-  <a href="https://github.com/Ameya79/galeus/blob/main/assets/galeusvideo.mp4">
-    <img src="assets/galeus-walkthrough.gif" alt="galeus Walkthrough Video" width="100%" style="border-radius: 12px; border: 1px solid #e2e8f0; box-shadow: 0 10px 30px rgba(0,0,0,0.08);" />
-  </a>
-</p>
-
-<p align="center">
-  🎬 <a href="https://github.com/Ameya79/galeus/blob/main/assets/galeusvideo.mp4"><strong>Watch Full HD Video in GitHub Player</strong></a> &nbsp;•&nbsp; ⚡ <a href="https://galeus.vercel.app/"><strong>Open Live Interactive Demo</strong></a> &nbsp;•&nbsp; 📥 <a href="https://raw.githubusercontent.com/Ameya79/galeus/main/assets/galeusvideo.mp4"><strong>Download MP4 (19MB)</strong></a>
-</p>
 
 ---
 
