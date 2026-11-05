@@ -56,16 +56,16 @@ export default function RootLayout({
       <body className="antialiased selection:bg-blue-100 selection:text-blue-900 bg-[#fbfbfc] text-slate-900 font-sans min-h-screen flex flex-col">
         {/* Flat, Minimal, Juicy Navigation Header */}
         <header className="border-b border-slate-200/90 bg-white/95 backdrop-blur-md sticky top-0 z-40 transition-colors">
-          <div className="max-w-6xl mx-auto px-3 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
-            <a href="/" className="flex items-center gap-3 group">
-              <div className="flex items-center">
+          <div className="max-w-6xl mx-auto px-3 sm:px-6 h-14 sm:h-16 flex items-center justify-between gap-2">
+            <a href="/" className="flex items-center gap-2 sm:gap-3 group shrink-0">
+              <div className="flex items-center shrink-0">
                 <Image
                   src="/galeus-logo.png"
                   alt="galeus"
-                  width={130}
-                  height={42}
+                  width={120}
+                  height={39}
                   priority
-                  className="h-7 sm:h-8 w-auto object-contain transition-transform duration-150 group-hover:scale-[1.02]"
+                  className="h-6 sm:h-8 w-auto object-contain transition-transform duration-150 group-hover:scale-[1.02]"
                 />
               </div>
               <span className="hidden sm:inline-flex font-mono text-[10px] font-semibold px-2 py-0.5 rounded-full bg-blue-50 text-blue-700 border border-blue-200/80 shrink-0">

@@ -434,34 +434,34 @@ export default function AiSettingsModal({ isOpen, onClose, onStatusChange }: AiS
         </div>
 
         {/* Action Buttons - Fixed & Pinned at Bottom */}
-        <div className="flex flex-wrap items-center justify-between gap-2 px-5 py-3.5 border-t border-slate-100 bg-slate-50/50 shrink-0">
+        <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-2.5 px-4 sm:px-5 py-3 sm:py-3.5 border-t border-slate-100 bg-slate-50/50 shrink-0">
           <button
             type="button"
             onClick={handleClear}
-            className="text-xs text-slate-500 hover:text-slate-800 underline cursor-pointer"
+            className="text-xs text-slate-500 hover:text-slate-800 underline cursor-pointer text-center sm:text-left py-1"
           >
             Reset to Rules-Only
           </button>
 
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 w-full sm:w-auto">
             <button
               type="button"
               onClick={handleTestConnection}
               disabled={testing || !baseUrl}
-              className="px-3 py-1.5 rounded-lg border border-slate-200 hover:bg-slate-50 text-xs font-medium text-slate-700 flex items-center gap-1.5 transition-all duration-150 active:scale-95 cursor-pointer disabled:opacity-50"
+              className="flex-1 sm:flex-none justify-center px-3 py-2 sm:py-1.5 rounded-lg border border-slate-200 bg-white hover:bg-slate-50 text-xs font-medium text-slate-700 flex items-center gap-1.5 transition-all duration-150 active:scale-95 cursor-pointer disabled:opacity-50 shadow-xs"
             >
               {testing ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <Zap className="w-3.5 h-3.5 text-amber-500" />}
-              Test Key
+              <span>Test Key</span>
             </button>
 
             <button
               type="button"
               onClick={handleSave}
               disabled={saving}
-              className="px-4 py-1.5 rounded-lg bg-slate-900 hover:bg-black text-white text-xs font-medium flex items-center gap-1.5 transition-all duration-150 active:scale-95 cursor-pointer disabled:opacity-50"
+              className="flex-1 sm:flex-none justify-center px-4 py-2 sm:py-1.5 rounded-lg bg-slate-900 hover:bg-black text-white text-xs font-medium flex items-center gap-1.5 transition-all duration-150 active:scale-95 cursor-pointer disabled:opacity-50 shadow-xs"
             >
               {saving ? <Loader2 className="w-3.5 h-3.5 animate-spin" /> : <ShieldCheck className="w-3.5 h-3.5" />}
-              Save Configuration
+              <span>Save Configuration</span>
             </button>
           </div>
         </div>
