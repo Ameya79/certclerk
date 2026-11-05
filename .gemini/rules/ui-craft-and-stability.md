@@ -79,3 +79,24 @@ Every interface must be engineered like precision desktop software (Linear, Rayc
 - **Adaptive Mobile Card Views**: Data tables with > 3 columns must provide a dedicated card layout on mobile viewports (`block md:hidden`) and show the full tabular layout only on desktop (`hidden md:block`).
 - **Segmented Mobile Steppers**: Multi-step wizards with > 4 steps must render a compact segmented progress indicator (`Step X of Y: Step Name`) on mobile rather than an overflow horizontal bar.
 - **Mobile Stacked Action Footers**: Wizard and modal action bars must stack vertically on mobile (`flex-col sm:flex-row gap-3 items-stretch sm:items-center sm:justify-between`) with full-width primary CTA buttons (`w-full sm:w-auto`).
+
+## 14. Plain-Language UI Copy & Jargon Elimination
+- **User-Facing Copy Simplification**: Never expose low-level database or backend engineering jargon to end users.
+  - Ban "WAL", "WAL Safe", "WAL crash-safe" from user-facing copy. Replace with "Crash-Proof Progress", "Crash-Resistant Delivery", or "Safe Auto-Save".
+  - Ban "Letter Invariant", "Character Invariant", or "Alphabet invariant" from general copy. Replace with "Zero Typo Guarantee", "Exact Name Accuracy", or "Spelling Safeguard".
+- **Mathematical Integrity**: When mathematical formulations are needed in developer READMEs or technical documentation, frame them clearly under human-understandable benefits: "Exact Name Accuracy (Zero-Typo Guarantee)".
+
+## 15. Navbar Singularity & Layman Onboarding Standard
+- **No Duplicate Navbar CTAs**: A navbar must never duplicate destinations (e.g. having both "Studio" text link and "Open Studio" CTA button). Use exactly one clear, prominent action button ("Open Studio" when on landing/docs pages, and "Overview" when on the Studio workstation).
+- **Layman Help & Quickstart Accessible in 1 Click**: Include a high-visibility "How to Use" / "Guide" button in the navigation bar that opens a friendly, visual 4-step modal:
+  1. Canva Template Blueprint: Single-page PDF with placeholder word (e.g. `AGENT`).
+  2. Excel / CSV Roster: Required `Name` column, optional `Email` column.
+  3. Free Gemini API Key: 1-click link to Google AI Studio with default `gemini-3.6-flash`.
+  4. Secure SMTP Setup: Gmail 16-character App Password, port 587, with in-memory security guarantee.
+
+## 16. Open Registry & Creator Attribution Standard
+- **Global Footer Attribution**: The application footer across all pages and the repository README must clearly credit the creator with verified links:
+  - Full Name: Ameya Kulkarni
+  - GitHub: [@Ameya79](https://github.com/Ameya79)
+  - LinkedIn: [in/ameya-kulkarni-a31b74246](https://www.linkedin.com/in/ameya-kulkarni-a31b74246/)
+- **Benchtop Labs Open Registry Verification**: Every verified open-source utility in the suite must feature the official Benchtop Labs Verified badge linking to the registry (`https://benchtoplabs.vercel.app`), with corresponding manifest registered in `benchtoplabs-registry/projects/<slug>.json`.

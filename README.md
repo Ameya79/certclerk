@@ -8,8 +8,9 @@
 
 <p align="center">
   <a href="https://galeus.vercel.app/"><img src="https://img.shields.io/badge/Live%20Demo-galeus.vercel.app-2563eb?style=for-the-badge&logo=vercel&logoColor=white" alt="Live Demo" /></a>
+  <a href="https://benchtoplabs.vercel.app"><img src="https://img.shields.io/badge/benchtop%20labs-verified-FF6B14?style=for-the-badge&logoColor=white" alt="Benchtop Labs Verified" /></a>
   <img src="https://img.shields.io/badge/Architecture-100%25%20On--Device-059669?style=for-the-badge&logo=docker&logoColor=white" alt="100% On-Device" />
-  <img src="https://img.shields.io/badge/Guard-Letter%20Invariant-blue?style=for-the-badge" alt="Letter Invariant" />
+  <img src="https://img.shields.io/badge/Guard-Zero%20Typo%20Guarantee-blue?style=for-the-badge" alt="Zero Typo Guarantee" />
   <img src="https://img.shields.io/badge/License-MIT-slate?style=for-the-badge" alt="MIT License" />
 </p>
 
@@ -21,7 +22,7 @@ Experience the full interactive workstation right in your browser:
 
 👉 **[https://galeus.vercel.app/](https://galeus.vercel.app/)**
 
-*(Upload your Canva PDF certificate template, import an attendee list, preview sub-pixel auto-fit rendering, and test the invariant guard in real time).*
+*(Upload your Canva PDF certificate template, import an attendee list, preview sub-pixel auto-fit rendering, and test the zero-typo guard in real time).*
 
 ---
 
@@ -46,7 +47,7 @@ Experience the full interactive workstation right in your browser:
 - **Zero Cloud Databases**: Jobs, templates, and rendered certificates live entirely on your local machine in ephemeral storage (`data/jobs/{job_id}`).
 - **Zero Telemetry**: No third-party tracking, no external analytics, no usage reporting.
 - **In-Memory SMTP Security**: Your mail server credentials live in memory exclusively during active dispatch and are immediately discarded. Nothing is written to disk or sent to external servers.
-- **Strict Mathematical Invariants**: AI models format names, but code-level Python assertions guarantee letter identity:
+- **Exact Name Accuracy (Zero-Typo Guarantee)**: AI models format and capitalize names, but code-level Python assertions guarantee letter identity:
   $$\text{norm}(\text{raw}) == \text{norm}(\text{clean})$$
   Alphanumeric characters cannot be hallucinated, omitted, or rearranged.
 
@@ -63,7 +64,7 @@ Experience the full interactive workstation right in your browser:
 3. **Preview**: PyMuPDF calculates exact bounding boxes. Long names auto-scale down or wrap onto two lines without breaking Canva layouts.
 4. **Draft**: Customize subject and body with `{name}` and `{event}` variable chips, or generate copy with local rules.
 5. **Approve**: Confirm exact recipient counts and seal the batch with a cryptographic SHA-256 batch hash.
-6. **Dispatch**: Throttled delivery via your local SMTP with live progress, pause/resume controls, and a crash-proof Write-Ahead Log (WAL).
+6. **Dispatch**: Throttled delivery via your local SMTP with live progress, pause/resume controls, and a crash-proof progress log.
 7. **Audit**: Download a complete ZIP archive of certificates, review delivery receipts, or trigger immediate local data purge.
 
 ---
@@ -135,6 +136,16 @@ tests/test_render.py ............................... [100%]
 Want to host your own cloud instance?
 - Follow the step-by-step **[Vercel & Cloud Deployment Guide](DEPLOY_VERCEL.md)** for 100% free hosting with zero credit cards.
 - For enterprise multi-tenant scaling with PostgreSQL and S3/R2 storage, see **[DEPLOYMENT.md](DEPLOYMENT.md)**.
+
+---
+
+## 👨‍💻 Author & Attribution
+
+**galeus** is crafted and maintained by **[Ameya Kulkarni](https://www.linkedin.com/in/ameya-kulkarni-a31b74246/)**.
+
+- **GitHub**: [@Ameya79](https://github.com/Ameya79)
+- **LinkedIn**: [in/ameya-kulkarni-a31b74246](https://www.linkedin.com/in/ameya-kulkarni-a31b74246/)
+- **Registry**: Verified on [Benchtop Labs](https://benchtoplabs.vercel.app)
 
 ---
 

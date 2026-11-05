@@ -36,7 +36,7 @@ export default function StudioPage() {
               </h1>
             </div>
             <p className="text-xs sm:text-sm text-slate-600 mt-1">
-              Drop your Canva PDF certificate template and attendee spreadsheet below to initialize the invariant pipeline.
+              Drop your Canva PDF certificate template and attendee spreadsheet below to start your certificate batch.
             </p>
           </div>
 
@@ -64,10 +64,10 @@ export default function StudioPage() {
         <div className="p-4 rounded-xl bg-white border border-slate-200/90 shadow-flat space-y-1">
           <div className="flex items-center gap-1.5 font-semibold text-slate-900">
             <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-            <span>Character Invariant</span>
+            <span>Exact Name Accuracy</span>
           </div>
           <p className="text-[11px] text-slate-500 leading-normal">
-            Hard check enforces <code className="font-mono text-slate-700">norm(raw) == norm(clean)</code>.
+            Guarantees original names are cleaned and styled with zero spelling errors.
           </p>
         </div>
 

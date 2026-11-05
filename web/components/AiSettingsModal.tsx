@@ -41,7 +41,7 @@ const PRESETS: Record<
     name: "Google Gemini (Free)",
     badge: "Recommended",
     baseUrl: "https://generativelanguage.googleapis.com/v1beta/openai/",
-    defaultModel: "gemini-2.0-flash",
+    defaultModel: "gemini-3.6-flash",
     keyLink: "https://aistudio.google.com/app/apikey",
     keyLinkLabel: "Get Free Gemini API Key at Google AI Studio",
     description: "100% free tier. 1,500 requests/day, 15 RPM. No credit card required.",
@@ -296,7 +296,7 @@ export default function AiSettingsModal({ isOpen, onClose, onStatusChange }: AiS
                 )}
               </div>
               <span className="text-[10px] text-slate-500 font-mono flex items-center gap-1">
-                Model: <strong>{model || "gemini-2.0-flash"}</strong>
+                Model: <strong>{model || "gemini-3.6-flash"}</strong>
                 {model !== currentPresetInfo.defaultModel && (
                   <button
                     type="button"
@@ -339,7 +339,7 @@ export default function AiSettingsModal({ isOpen, onClose, onStatusChange }: AiS
             </div>
             {activePreset === "gemini" && (
               <p className="text-[11px] text-slate-500 mt-1">
-                Google AI Studio keys work with all Gemini models automatically. galeus uses the fast free <code>gemini-2.0-flash</code> model.
+                Google AI Studio keys work with all Gemini models automatically. galeus uses the fast free <code>gemini-3.6-flash</code> model.
               </p>
             )}
           </div>
@@ -376,7 +376,7 @@ export default function AiSettingsModal({ isOpen, onClose, onStatusChange }: AiS
                     type="text"
                     value={model}
                     onChange={(e) => setModel(e.target.value)}
-                    placeholder="e.g. gemini-2.0-flash"
+                    placeholder="e.g. gemini-3.6-flash"
                     className="w-full px-2.5 py-1.5 text-base sm:text-xs rounded-md border border-slate-200 bg-white font-mono focus:border-slate-400 transition-colors"
                   />
                 </div>

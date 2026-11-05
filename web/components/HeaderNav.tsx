@@ -6,12 +6,14 @@ import { usePathname } from "next/navigation";
 import { LlmStatus } from "../lib/types";
 import { getLlmSettings } from "../lib/api";
 import AiSettingsModal from "./AiSettingsModal";
-import { Sparkles, ArrowRight, BookOpen, Layers } from "lucide-react";
+import HowToUseModal from "./HowToUseModal";
+import { Sparkles, ArrowRight, BookOpen, Layers, HelpCircle } from "lucide-react";
 
 export default function HeaderNav() {
   const pathname = usePathname();
   const [llmStatus, setLlmStatus] = useState<LlmStatus | null>(null);
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isHelpOpen, setIsHelpOpen] = useState(false);
 
   const isStudioPage = pathname === "/studio";
 
@@ -30,15 +32,17 @@ export default function HeaderNav() {
   return (
     <>
       <nav aria-label="Main Navigation" className="flex items-center gap-2 sm:gap-3">
-        {/* Nav Links */}
-        <div className="hidden md:flex items-center gap-1 mr-1 text-xs font-medium text-slate-600">
-          <Link
-            href="/studio"
-            className="px-3 py-1.5 rounded-lg hover:bg-slate-100/80 hover:text-slate-950 transition-colors"
-          >
-            Studio
-          </Link>
-        </div>
+        {/* How to Use Layman Guide Button */}
+        <button
+          type="button"
+          onClick={() => setIsHelpOpen(true)}
+          className="px-2.5 sm:px-3 py-1.5 rounded-xl text-xs font-medium text-slate-700 hover:text-slate-950 bg-slate-50 hover:bg-slate-100/80 border border-slate-200/80 transition-all duration-150 active:scale-[0.98] flex items-center gap-1.5 cursor-pointer shrink-0 shadow-flat"
+          title="Quick Layman Guide: Canva template, Excel format, Gemini key & SMTP"
+        >
+          <HelpCircle className="w-3.5 h-3.5 text-blue-600 shrink-0" />
+          <span className="hidden sm:inline">How to Use</span>
+          <span className="sm:hidden">Guide</span>
+        </button>
 
         {/* AI Engine Status Chip */}
         <button
@@ -108,6 +112,11 @@ export default function HeaderNav() {
         isOpen={isModalOpen}
         onClose={() => setIsModalOpen(false)}
         onStatusChange={(newStatus) => setLlmStatus(newStatus)}
+      />
+
+      <HowToUseModal
+        isOpen={isHelpOpen}
+        onClose={() => setIsHelpOpen(false)}
       />
     </>
   );

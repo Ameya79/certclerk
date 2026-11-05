@@ -18,6 +18,7 @@ import {
 } from "geist/font/serif";
 import "./globals.css";
 import HeaderNav from "../components/HeaderNav";
+import Footer from "../components/Footer";
 
 export const metadata: Metadata = {
   title: "galeus — Local Certificate Automation & Invariant Guard",
@@ -80,6 +81,8 @@ export default function RootLayout({
         <main className="flex-1 max-w-6xl w-full mx-auto px-3 sm:px-6 py-5 sm:py-10">
           {children}
         </main>
+
+        <Footer />
       </body>
     </html>
   );

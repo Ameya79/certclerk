@@ -25,7 +25,7 @@ export default function Home() {
           <span className="font-medium text-slate-900">galeus 1.0</span>
           <span className="text-slate-300">•</span>
           <span className="font-pixel text-[10px] text-blue-700 bg-blue-50 px-1.5 py-0.5 rounded border border-blue-200/60">
-            ZERO HALLUCINATIONS
+            ZERO MISTAKES
           </span>
         </div>
 
@@ -38,7 +38,7 @@ export default function Home() {
 
         {/* Intro 3: Explanatory Subhead */}
         <p className="animate-intro-3 text-base sm:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal">
-          <strong className="text-slate-950 font-semibold">galeus</strong> is an agentic certificate workstation that standardizes attendee names, verifies mathematical letter invariants, auto-scales Canva typography, and dispatches via your SMTP only with human approval.
+          <strong className="text-slate-950 font-semibold">galeus</strong> is an agentic certificate workstation that standardizes attendee names with zero typos, auto-scales Canva typography to fit perfectly, and dispatches via your SMTP only with human approval.
         </p>
 
         {/* Intro 4: Single Focused Action Button */}
@@ -61,7 +61,7 @@ export default function Home() {
           </div>
           <div className="flex items-center justify-center gap-1.5">
             <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
-            <span>Letter Invariant</span>
+            <span>Exact Name Accuracy</span>
           </div>
           <div className="flex items-center justify-center gap-1.5">
             <Lock className="w-4 h-4 text-blue-600 shrink-0" />
@@ -69,7 +69,7 @@ export default function Home() {
           </div>
           <div className="flex items-center justify-center gap-1.5">
             <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
-            <span>WAL Crash-Safe</span>
+            <span>Crash-Proof Progress</span>
           </div>
         </div>
       </section>
@@ -105,38 +105,6 @@ export default function Home() {
           </Link>
         </div>
       </section>
-
-      {/* 4. SEMANTIC FOOTER */}
-      <footer aria-label="Site Footer" className="pt-10 pb-8 border-t border-slate-200/80 text-center space-y-3 text-xs text-slate-500">
-        <div className="flex items-center justify-center mb-2">
-          <Image
-            src="/galeus-logo.png"
-            alt="galeus"
-            width={100}
-            height={33}
-            className="h-6 w-auto opacity-70 hover:opacity-100 transition-opacity"
-          />
-        </div>
-
-        <div className="flex flex-wrap items-center justify-center gap-4 text-xs font-medium text-slate-600">
-          <Link href="/studio" className="hover:text-blue-600 transition-colors">
-            Studio Workstation
-          </Link>
-          <span>•</span>
-          <a
-            href="https://github.com/Ameya79/galeus"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="hover:text-blue-600 transition-colors"
-          >
-            GitHub
-          </a>
-        </div>
-
-        <p className="text-[11px] text-slate-400">
-          galeus © {new Date().getFullYear()} • 100% On-Device Invariant Execution • Licensed under MIT
-        </p>
-      </footer>
     </div>
   );
 }

@@ -284,7 +284,7 @@ export default function UploadForm({ onSuccess }: UploadFormProps) {
           <div className="flex items-center gap-2">
             <CheckCircle2 className="w-4 h-4 text-emerald-600 shrink-0" />
             <span className="text-slate-900 font-medium">
-              Invariant Guard [PASS]
+              Name Check [READY]
             </span>
           </div>
         </div>
@@ -295,7 +295,7 @@ export default function UploadForm({ onSuccess }: UploadFormProps) {
         <div className="flex items-center gap-2">
           <Type className="w-4 h-4 text-blue-600 shrink-0" />
           <h4 className="text-xs font-semibold text-slate-950">
-            Layout Invariant Settings
+            Layout & Placeholder Settings
           </h4>
         </div>
 
@@ -360,11 +360,11 @@ export default function UploadForm({ onSuccess }: UploadFormProps) {
         {loading ? (
           <>
             <Loader2 className="w-4 h-4 animate-spin shrink-0" />
-            <span>Scanning Canva template &amp; verifying attendee invariants...</span>
+            <span>Scanning Canva template &amp; processing attendee names...</span>
           </>
         ) : (
           <>
-            <span>Initialize Batch &amp; Inspect Invariants</span>
+            <span>Initialize Batch &amp; Preview Certificates</span>
             <ArrowRight className="w-4 h-4 shrink-0" />
           </>
         )}

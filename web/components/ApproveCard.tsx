@@ -47,7 +47,7 @@ export default function ApproveCard({ job, onRefresh, onProceed }: ApproveCardPr
                 <ShieldCheck className="w-4 h-4 text-indigo-600" />
               </div>
               <div>
-                <h3 className="font-bold text-sm text-slate-900">Safety & Invariant Verification</h3>
+                <h3 className="font-bold text-sm text-slate-900">Safety & Quality Verification</h3>
                 <p className="text-[11px] text-slate-500">Every recipient has been validated through our 4-layer guardrails</p>
               </div>
             </div>
@@ -58,9 +58,9 @@ export default function ApproveCard({ job, onRefresh, onProceed }: ApproveCardPr
                   <Check className="w-2.5 h-2.5 stroke-[3]" />
                 </div>
                 <div>
-                  <span className="text-xs font-semibold text-slate-800 block">Letter Identity Invariant</span>
+                  <span className="text-xs font-semibold text-slate-800 block">Exact Name Accuracy</span>
                   <span className="text-[11px] text-slate-500">
-                    Names match source characters strictly. Zero LLM hallucinations permitted.
+                    Names match original roster with zero spelling mistakes.
                   </span>
                 </div>
               </div>
