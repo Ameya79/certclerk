@@ -4,6 +4,7 @@ import React from "react";
 import Link from "next/link";
 import Image from "next/image";
 import MotionGraphicPlayer from "../components/MotionGraphicPlayer";
+import RailwaySplitFlap from "../components/RailwaySplitFlap";
 import {
   ShieldCheck,
   Lock,
@@ -29,12 +30,10 @@ export default function Home() {
           </span>
         </div>
 
-        {/* Intro 2: Main Headline in Geist Sans */}
-        <h1 className="animate-intro-2 text-2xl sm:text-4xl md:text-6xl font-bold tracking-tight text-slate-950 leading-[1.18] sm:leading-[1.15]">
-          One Canva template.<br />
-          One messy sheet.<br />
-          <span className="text-blue-600">Zero mistakes.</span>
-        </h1>
+        {/* Intro 2: Railway-Style Mechanical Split-Flap Billboard in Vercel Geist Mono */}
+        <div className="animate-intro-2 my-2 sm:my-4">
+          <RailwaySplitFlap />
+        </div>
 
         {/* Intro 3: Explanatory Subhead */}
         <p className="animate-intro-3 text-xs sm:text-base md:text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed font-normal px-2">
