@@ -1,5 +1,5 @@
 """
-CertClerk: Lexsi Labs Agent Evaluation and Harness Benchmark.
+galeus: Agent Evaluation and Invariant Benchmark Suite.
 
 Measures:
 1. Invariant Pass Rate: Deterministic letter-equality guard success.
@@ -160,7 +160,7 @@ def print_scorecard(scorecard: dict[str, Any]) -> None:
     """Prints a structured ASCII terminal table of the evaluation results."""
     m = scorecard["metrics"]
     print("==================================================================")
-    print("       LEXSI LABS AGENT EVALUATION BENCHMARK SCORECARD            ")
+    print("             GALEUS AGENT EVALUATION BENCHMARK                    ")
     print("==================================================================")
     print(f" Total Adversarial Cases Evaluated : {scorecard['total_test_cases']}")
     print(f" Invariant Pass Rate (Target 100%) : {m['invariant_pass_rate_pct']}%")

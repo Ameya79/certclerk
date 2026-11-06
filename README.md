@@ -40,68 +40,40 @@ Experience the full interactive workstation right in your browser:
 
 ---
 
-## 🤖 Agent Architecture & Evaluation Spec
+## 🛠️ Architecture & Invariant Enforcement
 
-`galeus` is designed as a deterministic agentic system where AI provides formatting proposals while strict code invariants guarantee safety, layout integrity, and zero character drift.
+`galeus` uses an agent workflow to format names, calculate template fits, and dispatch certificates. The LLM only proposes formatting; deterministic code verifies every action.
 
-```
-+-------------------------------------------------------------------------------+
-|                       galeus Deterministic Agent Loop                         |
-|                                                                               |
-|  [Tabular Ingest]  -->  probe_canva_token()  -->  normalize_casing()          |
-|                                                          |                    |
-|  [ZIP / Dispatch]  <--  calculate_font_fit() <--  enforce_name_invariant()    |
-|                               (Auto-Scale & Wrap)     (Code Assertion)        |
-+-------------------------------------------------------------------------------+
-```
+### 1. Tool Contracts
+Every action in the pipeline executes through typed tool contracts:
+- [`probe_canva_token`](file:///core/agent_tools.py): Extracts placeholder coordinates, baseline offsets, font sizes, and bounding boxes from the template PDF.
+- [`enforce_name_invariant`](file:///core/agent_tools.py): Python guard asserting that normalized letter sequences match identically (`norm(raw) == norm(clean)`). Any character addition, deletion, or substitution triggers immediate fallback to local rules.
+- [`calculate_font_fit`](file:///core/agent_tools.py): Calculates text width against template constraints, auto-scaling font size or wrapping lines so text does not overflow margins.
+- [`build_recipient_trace`](file:///core/agent_tools.py): Records tool inputs, outputs, validation status, and execution latency for each recipient.
 
-### 1. Explicit Tool Contracts
-Every action in the pipeline executes through typed, inspectable tool contracts:
-- [`probe_canva_token`](file:///core/agent_tools.py): Probes Canva vector PDFs to extract baseline coordinates, bounding boxes, font sizes, and obstacle collisions.
-- [`enforce_name_invariant`](file:///core/agent_tools.py): Mathematical guard asserting that normalized letter sequences match identically (`norm(raw) == norm(clean)`). Any hallucination triggers immediate self-correction or rules-based fallback.
-- [`calculate_font_fit`](file:///core/agent_tools.py): Iteratively solves typography scaling and line-wrapping constraints to guarantee that text never overflows template borders.
-- [`build_recipient_trace`](file:///core/agent_tools.py): Assembles an inspectable execution trace recording each tool call, parameter, verdict, and latency for human auditability.
+### 2. Failure Modes & Mitigations
 
-### 2. Critical Failure Modes & Mitigations Matrix
-
-| Failure Mode | Root Cause | Agent Mitigation |
+| Failure Mode | Cause | Mitigation |
 | :--- | :--- | :--- |
-| **Typo & Character Hallucination** | LLM normalizer subtly alters unusual names (e.g. changing `Jonathon` to `Jonathan` or dropping characters). | Deterministic Python guard: if `norm(raw) != norm(clean)`, the suggestion is automatically rejected and local rules format the name instead. |
-| **Visual Border Clipping** | Long attendee names (50+ characters) overflow Canva certificate borders and collide with design elements. | Multi-tier self-correcting font engine: probes vector boundary, tries single-line shrink down to 60%, falls back to two lines, and dynamically shrinks down to 35% if extreme length persists. |
-| **Mid-Batch Dispatch Crash** | System crash or network loss mid-batch causes duplicate sends or lost status tracking. | Transactional SQLite WAL state machine: atomic per-row status transitions (`pending` &rarr; `sending` &rarr; `sent` / `failed`). Resumes exactly from the last confirmed delivery without re-sending. |
-| **Adversarial CSV Injection** | Malicious inputs in spreadsheet cells (formula prefixes `=cmd`, SQL strings, prompt injections). | Multi-layer input sanitization: prepends single-quotes to formula characters, rejects strings with control characters, and enforces strict Pydantic schemas. |
+| **Name Hallucination** | LLM normalizer alters unusual spellings or drops characters. | Python assertion `norm(raw) == norm(clean)`. If letters mismatch, proposal is rejected and local rules format the name instead. |
+| **Border Clipping** | Long attendee names (40+ characters) overflow template margins. | Dynamic font engine tries single-line scaling down to 60%, falls back to two lines, and scales down to 35% if needed. |
+| **Dispatch Crash** | Network drop or server crash mid-send causes duplicate emails. | SQLite state machine tracks per-row send status. Resumes from the last unconfirmed recipient without resending. |
+| **CSV Injection** | Malicious inputs in spreadsheet cells (formulas like `=cmd`, script tags). | Sanitizer prepends single-quotes to formula prefixes, strips control characters, and enforces strict schemas. |
 
-### 3. Automated Benchmark Harness (`evals/benchmark.py`)
-To objectively evaluate reliability, `galeus` includes an automated 100-case adversarial evaluation suite spanning casing irregularities, cultural particles (`van der`, `de la`), punctuation/apostrophes (`D'Souza`, `O'Brien`), accented names (`Renée`, `Jürgen`), CSV prompt injections, and extreme lengths (up to 80 characters).
+### 3. Evaluation Benchmark (`evals/benchmark.py`)
+An automated 100-case test suite validates casing rules, cultural prefixes (`van der`, `de la`), punctuation (`O'Brien`, `D'Souza`), accented names (`Renée`, `Jürgen`), CSV prompt injections, and long names (up to 80 characters).
 
 ```bash
-# Run the evaluation benchmark harness
 python -m evals.benchmark
 ```
 
-**Benchmark Results:**
-```
-==================================================================
-       LEXSI LABS AGENT EVALUATION BENCHMARK SCORECARD            
-==================================================================
- Total Adversarial Cases Evaluated : 100
- Invariant Pass Rate (Target 100%) : 100.0%
- Hallucination Rate (Target 0.0%)  : 0.0%
- Layout Containment Rate           : 100.0%
- Latency P50 / P95                 : 2.058 ms / 53.828 ms
-------------------------------------------------------------------
- CATEGORY BREAKDOWN:
-   Casing Irregularities          : 14/14 passed | 14/14 fit
-   Cultural Particles             : 13/13 passed | 13/13 fit
-   Punctuation And Apostrophes    : 27/27 passed | 27/27 fit
-   Honorifics And Titles          : 10/10 passed | 10/10 fit
-   Accents And Unicode            : 12/12 passed | 12/12 fit
-   Csv Injection And Adversarial  : 12/12 passed | 12/12 fit
-   Extreme Lengths                : 12/12 passed | 12/12 fit
-------------------------------------------------------------------
- VERDICT: PASSED (100/100 Quality Gate)
-==================================================================
-```
+| Metric | Target | Result |
+| :--- | :--- | :--- |
+| Invariant Pass Rate | 100% | 100.0% |
+| Hallucination Rate | 0.0% | 0.0% |
+| Layout Containment | 100% | 100.0% |
+| Latency (P50 / P95) | < 25 ms | 2.1 ms / 53.8 ms |
+| Total Test Cases | 100 | 100 / 100 Passed |
 
 ---
 
@@ -112,7 +84,7 @@ python -m evals.benchmark
 ```
 
 1. **Ingest**: Drop your single-page Canva certificate PDF and attendee sheet (CSV/XLSX). Specify the template placeholder token (default: `AGENT`).
-2. **Review**: Inspect raw vs. cleaned names with automatic flag detection for duplicates, casing errors, and particle honorifics (`Dr.`, `O'Connor`, `van der`). Click "Trace" on any row to view the full agent tool execution timeline.
+2. **Review**: Inspect raw vs. cleaned names with automatic flag detection for duplicates, casing errors, and particle honorifics (`Dr.`, `O'Connor`, `van der`). Click "Trace" on any row to view the tool execution record.
 3. **Preview**: PyMuPDF calculates exact bounding boxes. Long names auto-scale down or wrap onto two lines without breaking Canva layouts.
 4. **Draft**: Customize subject and body with `{name}` and `{event}` variable chips, or generate copy with local rules.
 5. **Approve**: Confirm exact recipient counts and seal the batch with a cryptographic SHA-256 batch hash.
