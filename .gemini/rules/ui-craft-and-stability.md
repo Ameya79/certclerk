@@ -100,3 +100,13 @@ Every interface must be engineered like precision desktop software (Linear, Rayc
   - GitHub: [@Ameya79](https://github.com/Ameya79)
   - LinkedIn: [in/ameya-kulkarni-a31b74246](https://www.linkedin.com/in/ameya-kulkarni-a31b74246/)
 - **Benchtop Labs Open Registry Verification**: Every verified open-source utility in the suite must feature the official Benchtop Labs Verified badge linking to the registry (`https://benchtoplabs.vercel.app`), with corresponding manifest registered in `benchtoplabs-registry/projects/<slug>.json`.
+
+## 17. Punctuation & Copy Tone Invariants
+- **Strict Em Dash Prohibition**: Never use em dashes (`—`) in user-facing copy, READMEs, profile showcases, or UI text. Use clean colons, commas, periods, or parentheses instead.
+- **Tame, Grounded Copy**: Write copy that is humble, punchy, and instantly understandable to human recruiters and developers. Never inflate simple concepts with pretentious phrasing (e.g. avoid "turnaround compression" or unsolicited LaTeX math when plain English works better).
+- **No Vibe-Coded Boxes or Neon Glow**: Never wrap hero typography in dark artificial boxes, pseudo-terminals, or neon glow effects on light-themed websites. Keep hero headlines clean, borderless, and integrated directly into the natural page canvas.
+
+## 18. Agentic Architecture & Evaluation Standards
+- **Transparent Reasoning & Tool Contracts**: Any agentic system must expose its tool contracts, input/output schemas, and execution traces so decisions are fully interpretable and auditable.
+- **Dedicated Evaluation Harness**: Pair agent pipelines with an automated benchmark harness (`eval/benchmark.py`) and an adversarial edge-case dataset, reporting quantitative metrics (hallucination rate, tool error rate, latency).
+- **Explicit Failure Mode Documentation**: Always document primary failure modes and their concrete code-level mitigations (e.g. invariant assertions, boundary checking, retry limits).

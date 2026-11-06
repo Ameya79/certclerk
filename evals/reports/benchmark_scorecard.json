@@ -1,0 +1,51 @@
+{
+  "suite_version": "1.0.0",
+  "timestamp": "2026-11-06T09:52:11Z",
+  "total_test_cases": 100,
+  "metrics": {
+    "invariant_pass_rate_pct": 100.0,
+    "hallucination_rate_pct": 0.0,
+    "layout_containment_rate_pct": 100.0,
+    "latency_p50_ms": 1.242,
+    "latency_p95_ms": 38.954,
+    "latency_avg_ms": 4.513
+  },
+  "category_breakdown": {
+    "casing_irregularities": {
+      "total": 14,
+      "invariant_passed": 14,
+      "contained": 14
+    },
+    "cultural_particles": {
+      "total": 13,
+      "invariant_passed": 13,
+      "contained": 13
+    },
+    "punctuation_and_apostrophes": {
+      "total": 27,
+      "invariant_passed": 27,
+      "contained": 27
+    },
+    "honorifics_and_titles": {
+      "total": 10,
+      "invariant_passed": 10,
+      "contained": 10
+    },
+    "accents_and_unicode": {
+      "total": 12,
+      "invariant_passed": 12,
+      "contained": 12
+    },
+    "csv_injection_and_adversarial": {
+      "total": 12,
+      "invariant_passed": 12,
+      "contained": 12
+    },
+    "extreme_lengths": {
+      "total": 12,
+      "invariant_passed": 12,
+      "contained": 12
+    }
+  },
+  "verdict": "PASSED"
+}

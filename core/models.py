@@ -1,5 +1,5 @@
 """
-CertClerk — Core data models.
+CertClerk: Core data models.
 
 All Pydantic models and dataclasses used across the system.
 """
@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import enum
 from dataclasses import dataclass, field
-from typing import Literal
+from typing import Any, Literal
 
 from pydantic import BaseModel, ConfigDict
 
@@ -43,6 +43,31 @@ class FitReport:
 
 
 # ---------------------------------------------------------------------------
+# Agent Execution & Trace Models (Interpretability & Auditability)
+# ---------------------------------------------------------------------------
+
+class TraceStep(BaseModel):
+    """A single discrete step executed by the agent pipeline."""
+    step_num: int
+    tool: str
+    action: str
+    input_summary: str
+    output_summary: str
+    verdict: Literal["success", "warning", "rejected", "info"] = "info"
+    details: dict[str, Any] = {}
+
+
+class AgentExecutionTrace(BaseModel):
+    """Full inspectable trace of an agent's reasoning and tool calls for a recipient."""
+    raw_input: str
+    candidate_output: str
+    invariant_passed: bool
+    verdict_summary: str
+    steps: list[TraceStep] = []
+    latency_ms: float = 0.0
+
+
+# ---------------------------------------------------------------------------
 # Recipient model (Pydantic for validation + serialization)
 # ---------------------------------------------------------------------------
 
@@ -72,6 +97,7 @@ class Recipient(BaseModel):
     flags: list[str] = []
     status: str = RecipientStatus.PENDING
     fit: FitReport | None = None
+    trace: AgentExecutionTrace | None = None
     error: str | None = None
 
 
@@ -166,7 +192,7 @@ class FitAction(BaseModel):
 # ---------------------------------------------------------------------------
 
 class SmtpConfig(BaseModel):
-    """SMTP credentials — never persisted to disk."""
+    """SMTP credentials (never persisted to disk)."""
     host: str
     port: int
     user: str

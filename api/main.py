@@ -1,5 +1,5 @@
 """
-galeus — FastAPI Backend.
+galeus: FastAPI Backend.
 
 All API endpoints, with validation, rate limiting, security headers,
 and background job execution.
@@ -40,6 +40,7 @@ from fastapi.responses import JSONResponse, StreamingResponse
 from pydantic import BaseModel
 
 from core.agent import clean_names, map_columns, render_with_policy
+from core.agent_tools import build_recipient_trace
 from core.guards import batch_hash, sanitize_csv_cell, validate_job_id
 from core.ingest import IngestError, read_table
 from core.mailer import MailerError, recover_send_state, send_all
@@ -82,7 +83,7 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# CORS — only allow configured origins
+# CORS: only allow configured origins
 app.add_middleware(
     CORSMiddleware,
     allow_origins=[orig.strip() for orig in os.getenv("FRONTEND_URL", "http://localhost:3000").split(",") if orig.strip()],
@@ -193,7 +194,7 @@ async def root():
 
 @app.get("/healthz")
 async def health():
-    """Liveness check — must stay fast even during heavy jobs."""
+    """Liveness check: must stay fast even during heavy jobs."""
     return {"ok": True, "service": "galeus", "ts": datetime.now(timezone.utc).isoformat()}
 
 
@@ -563,6 +564,13 @@ def _run_generation(job_id: str) -> None:
                         "notes": fit_report.notes,
                     }
                     generated += 1
+                    r["trace"] = build_recipient_trace(
+                        raw_name=r.get("raw_name", ""),
+                        clean_name=name,
+                        spec=spec,
+                        fit=fit_report,
+                        llm_invoked=bool(r.get("name_changed", False)),
+                    ).model_dump()
 
                 except Exception as e:
                     logger.error("Failed to generate cert for row %d: %s", r["row_id"], e)
@@ -836,7 +844,7 @@ async def retry_row(job_id: str, row_id: int):
 
 @app.post("/api/jobs/{job_id}/rows/{row_id}/resolve")
 async def resolve_row(job_id: str, row_id: int, resolution: dict):
-    """Resolve an 'unknown' row — human decides if it was sent or needs retry."""
+    """Resolve an 'unknown' row: human decides if it was sent or needs retry."""
     with store.lock(job_id):
         job_data = store.load(job_id)
         action = resolution.get("action")

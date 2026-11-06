@@ -1,5 +1,5 @@
 """
-CertClerk — Agent layer.
+CertClerk: Agent layer.
 
 Column mapping, name cleaning, fit policy. The LLM only judges;
 code executes. Every LLM suggestion is validated by guards.
@@ -23,6 +23,7 @@ from core.models import (
     PlaceholderSpec,
     Recipient,
 )
+from core.agent_tools import build_recipient_trace
 from core.pdf_engine import render
 from core.validators import rules_clean
 
@@ -159,6 +160,12 @@ def clean_names(
 
     if not flagged:
         audit("name_clean", outcome="all_clean", n=len(recipients))
+        for r in recipients:
+            r.trace = build_recipient_trace(
+                raw_name=r.raw_name,
+                clean_name=r.clean_name,
+                llm_invoked=False,
+            )
         return
 
     # Process in batches of 40
@@ -171,7 +178,7 @@ def clean_names(
         result = chat_json(NAME_CLEAN_SYSTEM, payload, NameFixBatch)
 
         if result is None:
-            # LLM unavailable — use rules
+            # LLM unavailable: use rules
             audit("name_clean", outcome="llm_unavailable_used_rules", n=len(batch))
             for r in batch:
                 r.clean_name = rules_clean(r.raw_name)
@@ -189,7 +196,7 @@ def clean_names(
                 audit("name_clean", row=r.row_id, outcome="accepted",
                       raw=r.raw_name, clean=r.clean_name)
             else:
-                # Rejected by guard or not returned — use rules
+                # Rejected by guard or not returned: use rules
                 r.clean_name = rules_clean(r.raw_name)
                 r.name_changed = r.clean_name != r.raw_name
                 if suggestion:
@@ -199,6 +206,14 @@ def clean_names(
                 else:
                     r.flags.append("name_not_returned")
                     audit("name_clean", row=r.row_id, outcome="not_returned")
+
+    # Attach inspectable trace for all recipients
+    for r in recipients:
+        r.trace = build_recipient_trace(
+            raw_name=r.raw_name,
+            clean_name=r.clean_name,
+            llm_invoked=r.name_changed and "name_change_rejected" not in r.flags,
+        )
 
 
 # ---------------------------------------------------------------------------

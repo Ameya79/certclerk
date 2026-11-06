@@ -3,7 +3,8 @@
 import React, { useState } from "react";
 import { Recipient, Job } from "../lib/types";
 import { updateRecipient, updateMapping } from "../lib/api";
-import { AlertTriangle, CheckCircle, Edit2, Check, X, ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
+import { AlertTriangle, CheckCircle, Edit2, Check, X, ChevronLeft, ChevronRight, ArrowRight, Terminal } from "lucide-react";
+import AgentTraceModal from "./AgentTraceModal";
 
 interface ReviewTableProps {
   job: Job;
@@ -20,6 +21,7 @@ export default function ReviewTable({ job, onRefresh, onProceed }: ReviewTablePr
   const [editingRow, setEditingRow] = useState<number | null>(null);
   const [editName, setEditName] = useState("");
   const [editEmail, setEditEmail] = useState("");
+  const [selectedTraceRecipient, setSelectedTraceRecipient] = useState<Recipient | null>(null);
 
   const recipients = job.recipients || [];
 
@@ -222,6 +224,14 @@ export default function ReviewTable({ job, onRefresh, onProceed }: ReviewTablePr
                       <>
                         <button
                           type="button"
+                          onClick={() => setSelectedTraceRecipient(r)}
+                          className="text-xs text-blue-600 hover:text-blue-800 px-2 py-1 rounded hover:bg-blue-50 border border-blue-200 flex items-center gap-1 cursor-pointer font-mono"
+                          title="Inspect Agent Trace"
+                        >
+                          <Terminal className="w-3 h-3" /> Trace
+                        </button>
+                        <button
+                          type="button"
                           onClick={() => startEdit(r)}
                           className="text-xs text-slate-600 hover:text-slate-900 px-2 py-1 rounded hover:bg-slate-50 border border-slate-200 flex items-center gap-1 cursor-pointer"
                         >
@@ -410,6 +420,13 @@ export default function ReviewTable({ job, onRefresh, onProceed }: ReviewTablePr
                       ) : (
                         <div className="flex items-center justify-end gap-2">
                           <button
+                            onClick={() => setSelectedTraceRecipient(r)}
+                            className="text-xs text-blue-600 hover:text-blue-800 flex items-center gap-1 cursor-pointer hover:underline font-mono"
+                            title="Inspect Agent Trace"
+                          >
+                            <Terminal className="w-3 h-3" /> Trace
+                          </button>
+                          <button
                             onClick={() => startEdit(r)}
                             className="text-xs text-slate-600 hover:text-slate-900 flex items-center gap-1 cursor-pointer hover:underline"
                           >
@@ -438,7 +455,7 @@ export default function ReviewTable({ job, onRefresh, onProceed }: ReviewTablePr
         {/* Pagination Footer */}
         <div className="p-3.5 border-t border-slate-200 bg-slate-50/50 flex items-center justify-between text-xs text-slate-500">
           <span>
-            Showing {(page - 1) * pageSize + 1}–{Math.min(page * pageSize, filtered.length)} of {filtered.length} entries
+            Showing {(page - 1) * pageSize + 1} to {Math.min(page * pageSize, filtered.length)} of {filtered.length} entries
           </span>
           <div className="flex items-center gap-2">
             <button
@@ -475,6 +492,12 @@ export default function ReviewTable({ job, onRefresh, onProceed }: ReviewTablePr
           <ArrowRight className="w-4 h-4" />
         </button>
       </div>
+
+      {/* Inspectable Agent Trace Drawer Modal */}
+      <AgentTraceModal
+        recipient={selectedTraceRecipient}
+        onClose={() => setSelectedTraceRecipient(null)}
+      />
     </div>
   );
 }

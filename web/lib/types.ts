@@ -9,6 +9,25 @@ export type FitReport = {
   notes: string[];
 };
 
+export type TraceStep = {
+  step_num: number;
+  tool: string;
+  action: string;
+  input_summary: string;
+  output_summary: string;
+  verdict: "success" | "warning" | "rejected" | "info";
+  details?: Record<string, any>;
+};
+
+export type AgentExecutionTrace = {
+  raw_input: string;
+  candidate_output: string;
+  invariant_passed: boolean;
+  verdict_summary: string;
+  steps: TraceStep[];
+  latency_ms: number;
+};
+
 export type Recipient = {
   row_id: number;
   raw_name: string;
@@ -20,6 +39,7 @@ export type Recipient = {
   flags: string[];
   status: "pending" | "ready" | "generated" | "queued" | "sending" | "sent" | "failed" | "skipped" | "unknown";
   fit?: FitReport;
+  trace?: AgentExecutionTrace;
   error?: string | null;
 };
 
